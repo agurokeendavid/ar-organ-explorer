@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#f0eee9;font-family:system-ui,sans-serif}
+a{color:#2a78d6}a:hover{color:#1b5aa8}
+.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 20px}
+.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}
+.dv-tname{font:600 13px/1.2 system-ui,sans-serif;color:#1a1a1a}
+.dv-grp{font:600 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;color:rgba(0,0,0,.42);margin:34px 0 14px;padding-bottom:7px;border-bottom:1px solid rgba(0,0,0,.1)}
+.dv-opts{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}
+.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 system-ui,sans-serif;color:rgba(0,0,0,.55);max-width:322px}
+.dv-card{max-width:100%;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}
+.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}
+.dv-next{margin:30px 0 0;font:12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5)}
+.p{width:320px;height:648px;background:#fff;position:relative;overflow:hidden;display:flex;flex-direction:column;font-family:'Architects Daughter',cursive;font-size:13px;color:#1b1b1b}
+.pw{width:320px;height:648px;border:1.5px solid #1b1b1b;border-radius:20px;overflow:hidden}
+.tabw{width:520px;height:390px;border:1.5px solid #1b1b1b;border-radius:14px;overflow:hidden}
+.sb{height:20px;flex:none;display:flex;justify-content:space-between;align-items:center;padding:0 12px;font:9px ui-monospace,monospace;color:#a8a8a8;border-bottom:1px solid #eee}
+.hd{flex:none;display:flex;align-items:center;gap:8px;padding:9px 12px;border-bottom:1.5px solid #1b1b1b;font-size:15px}
+.bd{flex:1;padding:12px;display:flex;flex-direction:column;gap:10px;overflow:hidden}
+.tb{flex:none;height:50px;border-top:1.5px solid #1b1b1b;display:flex}
+.tb>div{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font:8.5px ui-monospace,monospace;color:#666}
+.ic{width:17px;height:17px;border:1.5px solid #1b1b1b;border-radius:5px}
+.ph{border:1.5px dashed #9a9a9a;border-radius:8px;background:repeating-linear-gradient(45deg,#f4f4f2 0 6px,#fff 6px 12px);display:flex;align-items:center;justify-content:center;text-align:center;font:9px/1.35 ui-monospace,monospace;color:#7d7d7d;padding:6px}
+.ln{height:7px;border-radius:4px;background:#e4e4e1;flex:none}
+.bx{border:1.5px solid #1b1b1b;border-radius:9px;padding:9px;display:flex;flex-direction:column;gap:6px;flex:none}
+.pill{border:1.5px solid #1b1b1b;border-radius:99px;padding:6px 12px;font-size:12px;text-align:center;flex:none}
+.sol{background:#1b1b1b;color:#fff}
+.acc{border-color:#d0562f;color:#d0562f}
+.cam{background:#3a3a38;color:#fff;position:relative;flex:1;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.note{font:9px/1.35 ui-monospace,monospace;color:rgba(0,0,0,.45)}
+</style></helmet>
+
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Wireframe pass — 12 screens, plus the four open questions</span></div>
+
+<div class="dv-grp">A · Navigation model — Home screen</div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1a"><div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Tab bar. Five persistent destinations. Most conventional, cheapest in React Navigation.</div>
+<div class="dv-card pw"><div class="p">
+<div class="sb"><span>9:41</span><span>▮▮▮ ▲ ▰</span></div>
+<div class="hd" style="justify-content:space-between"><span>Hi, Ana</span><div class="ic" style="border-radius:99px"></div></div>
+<div class="bd">
+<div class="bx" style="gap:8px"><span style="font-size:12px">Continue learning</span><div class="ph" style="height:64px">heart.glb thumbnail</div><div class="ln" style="width:70%"></div><div style="display:flex;gap:6px;align-items:center"><div class="ln" style="flex:1;height:6px"></div><span class="note">3/8</span></div></div>
+<div class="pill sol">Start AR exploration</div>
+<span class="note">ORGAN SYSTEMS</span>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+<div class="ph" style="height:70px">Heart</div><div class="ph" style="height:70px">Lungs</div>
+<div class="ph" style="height:70px">Digestive</div><div class="ph" style="height:70px">Brain</div>
+</div>
+</div>
+<div class="tb"><div><div class="ic"></div>Home</div><div><div class="ic"></div>Lessons</div><div><div class="ic" style="border-color:#d0562f"></div>AR</div><div><div class="ic"></div>Quiz</div><div><div class="ic"></div>Me</div></div>
+</div></div></div>
+
+<div class="dv-opt" id="1b"><div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Hub. Home is a launchpad of big targets; no tab bar, back-to-hub navigation. Fewest chrome pixels, best for 44px+ targets.</div>
+<div class="dv-card pw"><div class="p">
+<div class="sb"><span>9:41</span><span>▮▮▮ ▲ ▰</span></div>
+<div class="bd" style="gap:12px;padding:14px">
+<div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:16px">My Body Explorer</span><div class="ic" style="border-radius:99px"></div></div>
+<div class="ph" style="height:150px;font-size:10px">hero: rotating 3D body<br>(skeleton.glb, idle spin)</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div class="bx" style="height:82px;justify-content:space-between;border-color:#d0562f"><div class="ic" style="border-color:#d0562f"></div><span>Explore in AR</span></div>
+<div class="bx" style="height:82px;justify-content:space-between"><div class="ic"></div><span>Lessons</span></div>
+<div class="bx" style="height:82px;justify-content:space-between"><div class="ic"></div><span>Quiz</span></div>
+<div class="bx" style="height:82px;justify-content:space-between"><div class="ic"></div><span>Ask the Tutor</span></div>
+</div>
+<div class="bx" style="flex-direction:row;align-items:center;gap:9px"><div class="ic" style="border-radius:99px"></div><div style="flex:1;display:flex;flex-direction:column;gap:5px"><div class="ln" style="width:55%"></div><div class="ln" style="width:80%;height:6px"></div></div><span class="note">progress</span></div>
+</div>
+</div></div></div>
+
+<div class="dv-opt" id="1c"><div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>Drawer + feed. Scrolling home feed, menu behind the hamburger. Scales if you add sections later, but hides navigation from kids.</div>
+<div class="dv-card pw"><div class="p">
+<div class="sb"><span>9:41</span><span>▮▮▮ ▲ ▰</span></div>
+<div class="hd" style="justify-content:space-between"><div style="display:flex;gap:8px;align-items:center"><div style="display:flex;flex-direction:column;gap:3px"><div style="width:15px;height:2px;background:#1b1b1b"></div><div style="width:15px;height:2px;background:#1b1b1b"></div><div style="width:15px;height:2px;background:#1b1b1b"></div></div><span>Home</span></div><span class="note">offline ✓</span></div>
+<div class="bd" style="gap:9px">
+<div class="ph" style="height:96px">featured lesson banner</div>
+<span class="note">RECENTLY VIEWED</span>
+<div style="display:flex;gap:8px"><div class="ph" style="width:84px;height:64px">heart</div><div class="ph" style="width:84px;height:64px">lungs</div><div class="ph" style="width:84px;height:64px">brain</div></div>
+<span class="note">KEEP GOING</span>
+<div class="bx" style="flex-direction:row;gap:9px;align-items:center"><div class="ph" style="width:44px;height:44px">glb</div><div style="flex:1;display:flex;flex-direction:column;gap:5px"><div class="ln" style="width:60%"></div><div class="ln" style="width:40%;height:6px"></div></div></div>
+<div class="bx" style="flex-direction:row;gap:9px;align-items:center"><div class="ph" style="width:44px;height:44px">glb</div><div style="flex:1;display:flex;flex-direction:column;gap:5px"><div class="ln" style="width:72%"></div><div class="ln" style="width:34%;height:6px"></div></div></div>
+<div class="pill acc">Open AR camera</div>
+</div>
+</div></div></div>
+
+<div class="dv-opt" id="1d"><div class="dv-olabel"><a class="dv-oid" href="#1d">1d</a>Tablet layout of <a class="dv-oid" href="#1a">1a</a> — persistent left rail, two-pane. Same components, different container.</div>
+<div class="dv-card tabw"><div class="p" style="width:520px;height:390px;flex-direction:row">
+<div style="width:78px;flex:none;border-right:1.5px solid #1b1b1b;display:flex;flex-direction:column;align-items:center;gap:14px;padding:14px 0;font:8.5px ui-monospace,monospace;color:#666">
+<div style="display:flex;flex-direction:column;align-items:center;gap:3px"><div class="ic"></div>Home</div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:3px"><div class="ic"></div>Lessons</div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:3px"><div class="ic" style="border-color:#d0562f"></div>AR</div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:3px"><div class="ic"></div>Quiz</div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:3px"><div class="ic"></div>Me</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;padding:12px;gap:9px;border-right:1.5px solid #1b1b1b">
+<span style="font-size:14px">Organ systems</span>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><div class="ph" style="height:62px">Heart</div><div class="ph" style="height:62px">Lungs</div><div class="ph" style="height:62px">Digestive</div><div class="ph" style="height:62px">Brain</div><div class="ph" style="height:62px">Kidneys</div><div class="ph" style="height:62px">Skeleton</div></div>
+</div>
+<div style="width:190px;flex:none;display:flex;flex-direction:column;padding:12px;gap:8px">
+<div class="ph" style="height:110px;font-size:9px">heart.glb<br>3D preview</div>
+<div class="ln" style="width:60%"></div><div class="ln"></div><div class="ln" style="width:85%"></div>
+<div class="pill sol" style="margin-top:auto">View in AR</div>
+</div>
+</div></div></div>
+
+</div>
+
+<div class="dv-grp">B · AR control layout</div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1e"><div class="dv-olabel"><a class="dv-oid" href="#1e">1e</a>Explicit button bar. Every transform is a visible 48px button. Easiest to implement and to demo; eats screen height.</div>
+<div class="dv-card pw"><div class="p">
+<div class="cam">
+<div class="ph" style="width:150px;height:170px;border-color:#cfcfcf;color:#e6e6e6;background:repeating-linear-gradient(45deg,rgba(255,255,255,.09) 0 6px,transparent 6px 12px)">heart.glb<br>placed</div>
+<div style="position:absolute;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;font:9px ui-monospace,monospace;color:#fff"><span>← Heart</span><span>surface locked ✓</span></div>
+<div style="position:absolute;bottom:10px;left:10px;right:10px;font:9px ui-monospace,monospace;color:rgba(255,255,255,.6);text-align:center">tap organ to select</div>
+</div>
+<div style="flex:none;border-top:1.5px solid #1b1b1b;padding:10px 12px;display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;gap:7px"><div class="pill" style="flex:1">Rotate</div><div class="pill" style="flex:1">Scale</div><div class="pill" style="flex:1">Move</div></div>
+<div style="display:flex;gap:7px"><div class="pill" style="flex:1">Labels</div><div class="pill" style="flex:1">Reset</div><div class="pill" style="flex:1">Info</div></div>
+</div>
+</div></div></div>
+
+<div class="dv-opt" id="1f"><div class="dv-olabel"><a class="dv-oid" href="#1f">1f</a>Gesture-first. Pinch / drag / two-finger move, with only Reset and Labels on screen. Maximum view, needs a first-run gesture coach.</div>
+<div class="dv-card pw"><div class="p">
+<div class="cam">
+<div class="ph" style="width:180px;height:210px;border-color:#cfcfcf;color:#e6e6e6;background:repeating-linear-gradient(45deg,rgba(255,255,255,.09) 0 6px,transparent 6px 12px)">lungs.glb<br>placed</div>
+<div style="position:absolute;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;font:9px ui-monospace,monospace;color:#fff"><span>← Lungs</span><span>⟳ reset</span></div>
+<div style="position:absolute;right:10px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:8px"><div class="ic" style="border-color:#fff;width:38px;height:38px;border-radius:99px"></div><div class="ic" style="border-color:#fff;width:38px;height:38px;border-radius:99px"></div></div>
+<div style="position:absolute;bottom:16px;left:16px;right:16px;border:1.5px dashed rgba(255,255,255,.45);border-radius:8px;padding:8px;font:9px/1.4 ui-monospace,monospace;color:rgba(255,255,255,.75);text-align:center">gesture coach overlay<br>drag = rotate · pinch = scale · 2-finger = move</div>
+</div>
+</div></div></div>
+
+<div class="dv-opt" id="1g"><div class="dv-olabel"><a class="dv-oid" href="#1g">1g</a>Radial dial. One thumb-anchored puck expands to the six actions. Compact and playful; more custom gesture code.</div>
+<div class="dv-card pw"><div class="p">
+<div class="cam">
+<div class="ph" style="width:150px;height:160px;border-color:#cfcfcf;color:#e6e6e6;background:repeating-linear-gradient(45deg,rgba(255,255,255,.09) 0 6px,transparent 6px 12px)">brain.glb<br>placed</div>
+<div style="position:absolute;top:10px;left:10px;right:10px;font:9px ui-monospace,monospace;color:#fff">← Brain</div>
+<div style="position:absolute;bottom:18px;right:18px;width:150px;height:150px">
+<div style="position:absolute;inset:0;border:1.5px dashed rgba(255,255,255,.35);border-radius:99px"></div>
+<div style="position:absolute;bottom:6px;right:6px;width:52px;height:52px;border-radius:99px;background:#d0562f;color:#fff;display:flex;align-items:center;justify-content:center;font:9px ui-monospace,monospace">tools</div>
+<div style="position:absolute;top:4px;right:14px;width:38px;height:38px;border-radius:99px;border:1.5px solid #fff;color:#fff;display:flex;align-items:center;justify-content:center;font:8px ui-monospace,monospace">rot</div>
+<div style="position:absolute;top:34px;left:8px;width:38px;height:38px;border-radius:99px;border:1.5px solid #fff;color:#fff;display:flex;align-items:center;justify-content:center;font:8px ui-monospace,monospace">scl</div>
+<div style="position:absolute;bottom:12px;left:0;width:38px;height:38px;border-radius:99px;border:1.5px solid #fff;color:#fff;display:flex;align-items:center;justify-content:center;font:8px ui-monospace,monospace">mov</div>
+</div>
+</div>
+</div></div></div>
+
+<div class="dv-opt" id="1h"><div class="dv-olabel"><a class="dv-oid" href="#1h">1h</a>Surface detection / placement step — shared by all three above.</div>
+<div class="dv-card pw"><div class="p">
+<div class="cam" style="flex-direction:column;gap:14px">
+<div style="position:absolute;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;font:9px ui-monospace,monospace;color:#fff"><span>✕</span><span>ARCore · scanning</span></div>
+<div style="width:170px;height:60px;border:1.5px dashed rgba(255,255,255,.6);border-radius:50%;transform:rotate(-8deg)"></div>
+<div style="font-size:13px;color:#fff;text-align:center;max-width:220px">Point at a flat surface,<br>then tap to place the heart</div>
+<div style="position:absolute;bottom:14px;left:14px;right:14px;display:flex;gap:8px"><div class="pill" style="flex:1;border-color:#fff;color:#fff">Retry scan</div><div class="pill sol" style="flex:1;background:#d0562f;border-color:#d0562f">Place</div></div>
+</div>
+</div></div></div>
+
+<div class="dv-opt" id="1i"><div class="dv-olabel"><a class="dv-oid" href="#1i">1i</a>AR organ selected — anatomical labels + info bottom sheet, highlight on the selected part.</div>
+<div class="dv-card pw"><div class="p">
+<div class="cam" style="flex:none;height:400px">
+<div class="ph" style="width:150px;height:180px;border-color:#d0562f;color:#f0d3c8;background:repeating-linear-gradient(45deg,rgba(208,86,47,.25) 0 6px,transparent 6px 12px)">heart.glb<br>right atrium highlighted</div>
+<div style="position:absolute;top:64px;left:14px;font:9px ui-monospace,monospace;color:#fff;border:1px solid rgba(255,255,255,.5);border-radius:4px;padding:2px 5px">aorta</div>
+<div style="position:absolute;top:150px;right:14px;font:9px ui-monospace,monospace;color:#fff;border:1px solid rgba(255,255,255,.5);border-radius:4px;padding:2px 5px">right atrium</div>
+<div style="position:absolute;bottom:70px;left:20px;font:9px ui-monospace,monospace;color:#fff;border:1px solid rgba(255,255,255,.5);border-radius:4px;padding:2px 5px">left ventricle</div>
+</div>
+<div style="flex:1;border-top:1.5px solid #1b1b1b;border-radius:14px 14px 0 0;padding:12px;display:flex;flex-direction:column;gap:8px;box-shadow:0 -3px 0 rgba(0,0,0,.05)">
+<div style="width:40px;height:4px;border-radius:9px;background:#d5d5d2;margin:0 auto"></div>
+<span style="font-size:15px">Right atrium</span>
+<div class="ln"></div><div class="ln" style="width:88%"></div><div class="ln" style="width:64%"></div>
+<div style="display:flex;gap:7px;margin-top:auto"><div class="pill" style="flex:1">Hear it beat</div><div class="pill sol" style="flex:1">Full lesson</div></div>
+</div>
+</div></div></div>
+
+</div>
+
+<div class="dv-grp">C · Quiz interaction</div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1j"><div class="dv-olabel"><a class="dv-oid" href="#1j">1j</a>Multiple choice card. One question per screen, four tappable answers, immediate feedback. Trivial to store as JSON.</div>
+<div class="dv-card pw"><div class="p">
+<div class="sb"><span>9:41</span><span>▮▮▮ ▲ ▰</span></div>
+<div class="hd" style="justify-content:space-between"><span>✕ Heart quiz</span><span class="note">4 / 10</span></div>
+<div class="bd">
+<div class="ln" style="height:6px;width:40%;background:#d0562f"></div>
+<div class="ph" style="height:110px">optional organ diagram</div>
+<span style="font-size:15px">Which side of the heart pumps blood to the lungs?</span>
+<div class="bx" style="flex-direction:row;align-items:center;gap:8px"><div class="ic" style="border-radius:99px"></div><span>Left side</span></div>
+<div class="bx" style="flex-direction:row;align-items:center;gap:8px;border-color:#d0562f;color:#d0562f"><div class="ic" style="border-radius:99px;border-color:#d0562f"></div><span>Right side</span></div>
+<div class="bx" style="flex-direction:row;align-items:center;gap:8px"><div class="ic" style="border-radius:99px"></div><span>Both sides</span></div>
+<div class="bx" style="flex-direction:row;align-items:center;gap:8px"><div class="ic" style="border-radius:99px"></div><span>Neither</span></div>
+<div class="pill sol" style="margin-top:auto">Check answer</div>
+</div>
+</div></div></div>
+
+<div class="dv-opt" id="1k"><div class="dv-olabel"><a class="dv-oid" href="#1k">1k</a>Drag-the-label. Pull organ names onto the diagram. Better recall, more work: needs a drag library and hit zones per model.</div>
+<div class="dv-card pw"><div class="p">
+<div class="sb"><span>9:41</span><span>▮▮▮ ▲ ▰</span></div>
+<div class="hd" style="justify-content:space-between"><span>✕ Label the body</span><span class="note">2 / 6</span></div>
+<div class="bd">
+<span style="font-size:14px">Drag each name to the right place.</span>
+<div class="ph" style="flex:1;position:relative;font-size:9px">body diagram with 4 empty drop targets
+<div style="position:absolute;top:22%;left:12%;width:54px;height:22px;border:1.5px dashed #b0b0b0;border-radius:6px"></div>
+<div style="position:absolute;top:44%;right:12%;width:54px;height:22px;border:1.5px dashed #b0b0b0;border-radius:6px"></div>
+<div style="position:absolute;bottom:22%;left:16%;width:54px;height:22px;border:1.5px dashed #b0b0b0;border-radius:6px"></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:7px"><div class="pill">Lungs</div><div class="pill">Stomach</div><div class="pill acc">Heart</div><div class="pill">Kidneys</div><div class="pill">Brain</div></div>
+</div>
+</div></div></div>
+
+<div class="dv-opt" id="1l"><div class="dv-olabel"><a class="dv-oid" href="#1l">1l</a>Quiz results — score, per-question review, retry, all stored locally in SQLite.</div>
+<div class="dv-card pw"><div class="p">
+<div class="sb"><span>9:41</span><span>▮▮▮ ▲ ▰</span></div>
+<div class="bd" style="gap:12px;padding:14px">
+<div class="ph" style="height:96px;font-size:10px">celebration illustration<br>(confetti, no gore)</div>
+<div style="text-align:center;font-size:20px">8 / 10</div>
+<div style="text-align:center;font-size:13px;color:#666">Nice work on the heart!</div>
+<div class="bx" style="gap:7px"><span class="note">REVIEW</span>
+<div style="display:flex;gap:7px;align-items:center"><span style="color:#d0562f">✕</span><div class="ln" style="flex:1"></div></div>
+<div style="display:flex;gap:7px;align-items:center"><span style="color:#d0562f">✕</span><div class="ln" style="flex:1;width:80%"></div></div>
+<div style="display:flex;gap:7px;align-items:center"><span>✓</span><div class="ln" style="flex:1;width:65%"></div></div>
+</div>
+<div class="bx" style="flex-direction:row;gap:9px;align-items:center"><div class="ic"></div><div style="flex:1"><div class="ln" style="width:70%"></div></div><span class="note">badge earned</span></div>
+<div style="display:flex;gap:7px;margin-top:auto"><div class="pill" style="flex:1">Retry</div><div class="pill sol" style="flex:1">Back to lesson</div></div>
+</div>
+</div></div></div>
+
+</div>
+
+<div class="dv-grp">D · Remaining screens</div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1m"><div class="dv-olabel"><a class="dv-oid" href="#1m">1m</a>Onboarding + camera permission. States the offline promise up front; AR is optional, not a gate.</div>
+<div class="dv-card pw"><div class="p">
+<div class="bd" style="gap:14px;padding:18px;justify-content:center">
+<div class="ph" style="height:170px;font-size:10px">welcome illustration</div>
+<span style="font-size:19px;line-height:1.25">Explore the human body in your own room.</span>
+<div class="ln" style="width:90%"></div><div class="ln" style="width:70%"></div>
+<div class="bx" style="gap:7px;border-style:dashed"><span style="font-size:12px">Camera access</span><div class="ln" style="width:85%;height:6px"></div><div class="ln" style="width:60%;height:6px"></div><span class="note">needed only for AR mode</span></div>
+<div class="pill sol">Allow camera</div>
+<div style="text-align:center;font-size:12px;color:#777">Skip — works offline without AR</div>
+</div>
+</div></div></div>
+
+<div class="dv-opt" id="1n"><div class="dv-olabel"><a class="dv-oid" href="#1n">1n</a>Lessons list. Six systems, per-system progress, search and filter.</div>
+<div class="dv-card pw"><div class="p">
+<div class="sb"><span>9:41</span><span>▮▮▮ ▲ ▰</span></div>
+<div class="hd" style="justify-content:space-between"><span>Lessons</span><span class="note">6 systems</span></div>
+<div class="bd" style="gap:9px">
+<div class="pill" style="text-align:left;color:#8a8a8a">Search lessons…</div>
+<div style="display:flex;gap:6px"><div class="pill acc" style="font-size:11px;padding:4px 10px">All</div><div class="pill" style="font-size:11px;padding:4px 10px">Started</div><div class="pill" style="font-size:11px;padding:4px 10px">Done</div></div>
+<div class="bx" style="flex-direction:row;gap:9px;align-items:center"><div class="ph" style="width:48px;height:48px">heart</div><div style="flex:1;display:flex;flex-direction:column;gap:5px"><span style="font-size:13px">Circulatory</span><div class="ln" style="width:80%;height:6px"></div></div><span class="note">3/8</span></div>
+<div class="bx" style="flex-direction:row;gap:9px;align-items:center"><div class="ph" style="width:48px;height:48px">lungs</div><div style="flex:1;display:flex;flex-direction:column;gap:5px"><span style="font-size:13px">Respiratory</span><div class="ln" style="width:45%;height:6px"></div></div><span class="note">1/6</span></div>
+<div class="bx" style="flex-direction:row;gap:9px;align-items:center"><div class="ph" style="width:48px;height:48px">stomach</div><div style="flex:1;display:flex;flex-direction:column;gap:5px"><span style="font-size:13px">Digestive</span><div class="ln" style="width:20%;height:6px"></div></div><span class="note">0/7</span></div>
+<div class="bx" style="flex-direction:row;gap:9px;align-items:center"><div class="ph" style="width:48px;height:48px">brain</div><div style="flex:1;display:flex;flex-direction:column;gap:5px"><span style="font-size:13px">Nervous</span><div class="ln" style="width:20%;height:6px"></div></div><span class="note">0/5</span></div>
+<div class="bx" style="flex-direction:row;gap:9px;align-items:center"><div class="ph" style="width:48px;height:48px">kidneys</div><div style="flex:1;display:flex;flex-direction:column;gap:5px"><span style="font-size:13px">Urinary</span><div class="ln" style="width:20%;height:6px"></div></div><span class="note">0/4</span></div>
+<div class="bx" style="flex-direction:row;gap:9px;align-items:center"><div class="ph" style="width:48px;height:48px">skeleton</div><div style="flex:1;display:flex;flex-direction:column;gap:5px"><span style="font-size:13px">Skeletal</span><div class="ln" style="width:20%;height:6px"></div></div><span class="note">0/6</span></div>
+</div>
+<div class="tb"><div><div class="ic"></div>Home</div><div><div class="ic" style="border-color:#d0562f"></div>Lessons</div><div><div class="ic"></div>AR</div><div><div class="ic"></div>Quiz</div><div><div class="ic"></div>Me</div></div>
+</div></div></div>
+
+<div class="dv-opt" id="1o"><div class="dv-olabel"><a class="dv-oid" href="#1o">1o</a>Lesson content. Scrolling read view, section stepper, AR and quiz entry pinned at the end.</div>
+<div class="dv-card pw"><div class="p">
+<div class="sb"><span>9:41</span><span>▮▮▮ ▲ ▰</span></div>
+<div class="hd" style="justify-content:space-between"><span>← How the heart works</span><span class="note">2/4</span></div>
+<div class="bd" style="gap:10px">
+<div style="display:flex;gap:5px"><div class="ln" style="flex:1;height:5px;background:#d0562f"></div><div class="ln" style="flex:1;height:5px;background:#d0562f"></div><div class="ln" style="flex:1;height:5px"></div><div class="ln" style="flex:1;height:5px"></div></div>
+<div class="ph" style="height:130px;font-size:9px">diagram / model still<br>heart.glb render</div>
+<span style="font-size:16px">Two pumps in one</span>
+<div class="ln"></div><div class="ln" style="width:94%"></div><div class="ln" style="width:88%"></div><div class="ln" style="width:70%"></div>
+<div class="bx" style="border-style:dashed;gap:5px"><span class="note">KEY WORD</span><div class="ln" style="width:50%"></div><div class="ln" style="width:80%;height:6px"></div></div>
+<div style="display:flex;gap:7px;margin-top:auto"><div class="pill acc" style="flex:1">See in AR</div><div class="pill sol" style="flex:1">Next</div></div>
+</div>
+</div></div></div>
+
+<div class="dv-opt" id="1p"><div class="dv-olabel"><a class="dv-oid" href="#1p">1p</a>Organ info detail. Facts, parts list, related lesson and quiz — the target of every AR selection.</div>
+<div class="dv-card pw"><div class="p">
+<div class="sb"><span>9:41</span><span>▮▮▮ ▲ ▰</span></div>
+<div class="hd" style="justify-content:space-between"><span>← Heart</span><div class="ic"></div></div>
+<div class="bd" style="gap:10px">
+<div class="ph" style="height:140px;font-size:9px">heart.glb<br>tap to rotate</div>
+<div style="display:flex;gap:6px"><div class="pill" style="font-size:11px;padding:4px 10px">Overview</div><div class="pill" style="font-size:11px;padding:4px 10px">Parts</div><div class="pill" style="font-size:11px;padding:4px 10px">Facts</div></div>
+<div class="ln"></div><div class="ln" style="width:90%"></div><div class="ln" style="width:76%"></div>
+<span class="note">PARTS</span>
+<div style="display:flex;flex-wrap:wrap;gap:6px"><div class="pill" style="font-size:11px;padding:4px 10px">Atrium</div><div class="pill" style="font-size:11px;padding:4px 10px">Ventricle</div><div class="pill" style="font-size:11px;padding:4px 10px">Aorta</div><div class="pill" style="font-size:11px;padding:4px 10px">Valve</div></div>
+<div style="display:flex;gap:7px;margin-top:auto"><div class="pill" style="flex:1">Quiz me</div><div class="pill sol" style="flex:1">View in AR</div></div>
+</div>
+</div></div></div>
+
+<div class="dv-opt" id="1q"><div class="dv-olabel"><a class="dv-oid" href="#1q">1q</a>3D viewer, no camera. The fallback when ARCore or permission is unavailable — same model, turntable controls.</div>
+<div class="dv-card pw"><div class="p">
+<div class="sb"><span>9:41</span><span>▮▮▮ ▲ ▰</span></div>
+<div class="hd" style="justify-content:space-between"><span>← Lungs · 3D</span><span class="note">no camera needed</span></div>
+<div class="ph" style="flex:1;margin:12px;font-size:10px;position:relative">lungs.glb<br>ViroReact 3D scene
+<div style="position:absolute;bottom:10px;left:10px;right:10px;display:flex;justify-content:center;gap:8px"><div class="ic" style="border-radius:99px;width:34px;height:34px;background:#fff"></div><div class="ic" style="border-radius:99px;width:34px;height:34px;background:#fff"></div><div class="ic" style="border-radius:99px;width:34px;height:34px;background:#fff"></div></div>
+</div>
+<div style="flex:none;padding:0 12px 12px;display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;gap:6px"><div class="pill" style="flex:1;font-size:11px">Labels on</div><div class="pill" style="flex:1;font-size:11px">Cutaway</div><div class="pill" style="flex:1;font-size:11px">Reset</div></div>
+<div class="pill acc">Switch to AR mode</div>
+</div>
+</div></div></div>
+
+<div class="dv-opt" id="1r"><div class="dv-olabel"><a class="dv-oid" href="#1r">1r</a>Progress. Per-system mastery, streak, recently viewed — read straight from local tables.</div>
+<div class="dv-card pw"><div class="p">
+<div class="sb"><span>9:41</span><span>▮▮▮ ▲ ▰</span></div>
+<div class="hd" style="justify-content:space-between"><span>My learning</span><div class="ic" style="border-radius:99px"></div></div>
+<div class="bd" style="gap:10px">
+<div style="display:flex;gap:8px"><div class="bx" style="flex:1;align-items:center;gap:3px"><span style="font-size:19px">12</span><span class="note">lessons</span></div><div class="bx" style="flex:1;align-items:center;gap:3px"><span style="font-size:19px">5</span><span class="note">day streak</span></div><div class="bx" style="flex:1;align-items:center;gap:3px"><span style="font-size:19px">83%</span><span class="note">avg quiz</span></div></div>
+<span class="note">BY SYSTEM</span>
+<div style="display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;gap:8px;align-items:center"><span style="font-size:11px;width:62px">Heart</span><div style="flex:1;height:9px;border:1.5px solid #1b1b1b;border-radius:9px;overflow:hidden"><div style="width:72%;height:100%;background:#d0562f"></div></div></div>
+<div style="display:flex;gap:8px;align-items:center"><span style="font-size:11px;width:62px">Lungs</span><div style="flex:1;height:9px;border:1.5px solid #1b1b1b;border-radius:9px;overflow:hidden"><div style="width:48%;height:100%;background:#d0562f"></div></div></div>
+<div style="display:flex;gap:8px;align-items:center"><span style="font-size:11px;width:62px">Digestive</span><div style="flex:1;height:9px;border:1.5px solid #1b1b1b;border-radius:9px;overflow:hidden"><div style="width:30%;height:100%;background:#d0562f"></div></div></div>
+<div style="display:flex;gap:8px;align-items:center"><span style="font-size:11px;width:62px">Brain</span><div style="flex:1;height:9px;border:1.5px solid #1b1b1b;border-radius:9px;overflow:hidden"><div style="width:18%;height:100%;background:#d0562f"></div></div></div>
+<div style="display:flex;gap:8px;align-items:center"><span style="font-size:11px;width:62px">Kidneys</span><div style="flex:1;height:9px;border:1.5px solid #1b1b1b;border-radius:9px;overflow:hidden"><div style="width:10%;height:100%;background:#d0562f"></div></div></div>
+<div style="display:flex;gap:8px;align-items:center"><span style="font-size:11px;width:62px">Skeleton</span><div style="flex:1;height:9px;border:1.5px solid #1b1b1b;border-radius:9px;overflow:hidden"><div style="width:6%;height:100%;background:#d0562f"></div></div></div>
+</div>
+<span class="note">RECENTLY VIEWED</span>
+<div style="display:flex;gap:8px"><div class="ph" style="width:80px;height:56px">heart</div><div class="ph" style="width:80px;height:56px">lungs</div><div class="ph" style="width:80px;height:56px">brain</div></div>
+</div>
+<div class="tb"><div><div class="ic"></div>Home</div><div><div class="ic"></div>Lessons</div><div><div class="ic"></div>AR</div><div><div class="ic"></div>Quiz</div><div><div class="ic" style="border-color:#d0562f"></div>Me</div></div>
+</div></div></div>
+
+<div class="dv-opt" id="1s"><div class="dv-olabel"><a class="dv-oid" href="#1s">1s</a>Achievements. Earned and locked badges with the unlock rule stated, so goals are visible.</div>
+<div class="dv-card pw"><div class="p">
+<div class="sb"><span>9:41</span><span>▮▮▮ ▲ ▰</span></div>
+<div class="hd" style="justify-content:space-between"><span>← Achievements</span><span class="note">7 of 24</span></div>
+<div class="bd" style="gap:10px">
+<div class="bx" style="flex-direction:row;gap:10px;align-items:center;border-color:#d0562f"><div class="ph" style="width:52px;height:52px;border-color:#d0562f">badge</div><div style="flex:1;display:flex;flex-direction:column;gap:5px"><span style="font-size:13px">Heart Explorer</span><div class="ln" style="width:80%;height:6px"></div><span class="note">earned today</span></div></div>
+<span class="note">EARNED</span>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+<div class="ph" style="height:74px">badge</div><div class="ph" style="height:74px">badge</div><div class="ph" style="height:74px">badge</div>
+<div class="ph" style="height:74px">badge</div><div class="ph" style="height:74px">badge</div><div class="ph" style="height:74px">badge</div>
+</div>
+<span class="note">LOCKED</span>
+<div class="bx" style="flex-direction:row;gap:9px;align-items:center;border-style:dashed"><div class="ph" style="width:40px;height:40px">?</div><div style="flex:1;display:flex;flex-direction:column;gap:4px"><div class="ln" style="width:55%"></div><span class="note">place 3 organs in AR</span></div></div>
+<div class="bx" style="flex-direction:row;gap:9px;align-items:center;border-style:dashed"><div class="ph" style="width:40px;height:40px">?</div><div style="flex:1;display:flex;flex-direction:column;gap:4px"><div class="ln" style="width:66%"></div><span class="note">score 10/10 on any quiz</span></div></div>
+</div>
+</div></div></div>
+
+<div class="dv-opt" id="1t"><div class="dv-olabel"><a class="dv-oid" href="#1t">1t</a>AI Tutor. Suggested questions drive it; answers come from bundled content, so it works with the radio off.</div>
+<div class="dv-card pw"><div class="p">
+<div class="sb"><span>9:41</span><span>▮▮▮ ▲ ▰</span></div>
+<div class="hd" style="justify-content:space-between"><span>← Ask the Tutor</span><span class="note">offline answers</span></div>
+<div class="bd" style="gap:9px">
+<div style="display:flex;gap:8px"><div class="ic" style="border-radius:99px;width:26px;height:26px;flex:none"></div><div class="bx" style="flex:1;border-radius:12px 12px 12px 4px;gap:5px"><div class="ln"></div><div class="ln" style="width:70%"></div></div></div>
+<div class="bx" style="align-self:flex-end;max-width:78%;border-radius:12px 12px 4px 12px;background:#1b1b1b"><span style="color:#fff;font-size:12px">What does the heart do?</span></div>
+<div style="display:flex;gap:8px"><div class="ic" style="border-radius:99px;width:26px;height:26px;flex:none"></div><div class="bx" style="flex:1;border-radius:12px 12px 12px 4px;gap:5px"><div class="ln"></div><div class="ln" style="width:92%"></div><div class="ln" style="width:78%"></div><div class="pill acc" style="align-self:flex-start;font-size:11px;padding:4px 10px">Open heart lesson</div></div></div>
+<span class="note" style="margin-top:auto">SUGGESTED</span>
+<div style="display:flex;flex-wrap:wrap;gap:6px"><div class="pill" style="font-size:11px;padding:5px 10px">Why do we need lungs?</div><div class="pill" style="font-size:11px;padding:5px 10px">What does our brain do?</div><div class="pill" style="font-size:11px;padding:5px 10px">Why do we have bones?</div></div>
+<div class="pill" style="text-align:left;color:#8a8a8a">Type a question…</div>
+</div>
+</div></div></div>
+
+<div class="dv-opt" id="1u"><div class="dv-olabel"><a class="dv-oid" href="#1u">1u</a>Tutor offline notice — scoped to this one screen. Everything else keeps working; the suggested questions still answer.</div>
+<div class="dv-card pw"><div class="p">
+<div class="sb"><span>9:41</span><span>▮▮▮ ▲ ▰</span></div>
+<div class="hd" style="justify-content:space-between"><span>← Ask the Tutor</span><span class="note">no connection</span></div>
+<div class="bd" style="gap:10px">
+<div class="bx" style="border-style:dashed;gap:7px;align-items:flex-start"><div class="ic"></div><span style="font-size:13px">AI Tutor requires an internet connection.</span><div class="ln" style="width:80%;height:6px"></div></div>
+<span class="note">MEANWHILE, THESE STILL WORK</span>
+<div class="bx" style="flex-direction:row;gap:9px;align-items:center"><div class="ic"></div><span style="font-size:12px">Answers already saved on this device</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px"><div class="pill" style="font-size:11px;padding:5px 10px">What does the heart do?</div><div class="pill" style="font-size:11px;padding:5px 10px">Why do we need lungs?</div><div class="pill" style="font-size:11px;padding:5px 10px">What happens to food?</div></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto"><div class="bx" style="height:70px;justify-content:space-between"><div class="ic"></div><span style="font-size:12px">Explore AR</span></div><div class="bx" style="height:70px;justify-content:space-between"><div class="ic"></div><span style="font-size:12px">Lessons</span></div><div class="bx" style="height:70px;justify-content:space-between"><div class="ic"></div><span style="font-size:12px">Quiz</span></div><div class="bx" style="height:70px;justify-content:space-between"><div class="ic"></div><span style="font-size:12px">Progress</span></div></div>
+</div>
+</div></div></div>
+
+</div>
+
+<p class="dv-next">Try next: "go with <a class="dv-oid" href="#1a">1a</a> nav and <a class="dv-oid" href="#1e">1e</a> AR controls" · "show me tablet versions of <a class="dv-oid" href="#1i">1i</a> and <a class="dv-oid" href="#1o">1o</a>" · "more ideas for the AR selection screen"</p>
+</section>
+
+</x-dc>
+</body>
+</html>

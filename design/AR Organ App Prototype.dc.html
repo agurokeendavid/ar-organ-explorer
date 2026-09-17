@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0..1,0&display=block" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#eceef2;font-family:'Source Sans 3',system-ui,sans-serif;color:#23262e}
+a{color:#2f5fd0;text-decoration:none}a:hover{color:#2247a3}
+*{box-sizing:border-box}
+::-webkit-scrollbar{width:0;height:0}
+@keyframes pulse{0%,100%{opacity:.35;transform:scale(1)}50%{opacity:.9;transform:scale(1.06)}}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+</style></helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:18px;padding:34px 20px 44px">
+
+<div style="display:flex;align-items:baseline;gap:12px">
+<span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:17px;letter-spacing:-.01em">Body Explorer AR</span>
+<span style="font:11px ui-monospace,monospace;color:#8a90a0">React Native · Android · offline-first prototype</span>
+</div>
+
+<div style="padding:11px;background:#1a1c22;border-radius:46px;box-shadow:0 24px 50px -18px rgba(20,24,35,.5)">
+<div style="width:412px;height:892px;background:#f6f7f9;border-radius:36px;overflow:hidden;display:flex;flex-direction:column;position:relative">
+
+<div style="flex:none;height:30px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;font:600 11px 'Source Sans 3',sans-serif;color:#5c6270;background:transparent">
+<span>9:41</span>
+<div style="display:flex;align-items:center;gap:5px"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:15px;line-height:1;color:#5c6270;font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">{{ netIcon }}</span><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:15px;line-height:1;color:#5c6270;font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">signal_cellular_alt</span><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:15px;line-height:1;color:#5c6270;font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;transform:rotate(90deg)">battery_5_bar</span><span style="font:10px ui-monospace,monospace">84%</span></div>
+</div>
+
+<sc-if value="{{ isOnboarding }}" hint-placeholder-val="{{ true }}">
+<div style="flex:1;display:flex;flex-direction:column;padding:26px 24px 22px;gap:18px;overflow:hidden">
+<div style="flex:none;display:flex;align-items:center;gap:9px">
+<div style="width:28px;height:28px;border-radius:9px;background:#2f5fd0;display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:18px;line-height:1;color:#fff;font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">accessibility_new</span></div>
+<span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:15px">Body Explorer</span>
+</div>
+<div style="flex:none;height:250px;border-radius:20px;background:radial-gradient(120% 100% at 50% 30%,#eef2fb 0%,#f8f9fb 70%);overflow:hidden;position:relative">
+<x-import component-from-global-scope="OrganModel" from="./organ-model.js?v=2" organ="heart" hint-size="100%,250px"></x-import>
+</div>
+<h1 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:32px;line-height:1.1;letter-spacing:-.02em;text-wrap:pretty">See inside the body, right on your desk.</h1>
+<p style="margin:0;font-size:16px;line-height:1.5;color:#5c6270;text-wrap:pretty">Six organ systems, in 3D. Lessons, quizzes and progress all work with no internet.</p>
+<div style="flex:none;border:1px solid #e2e5ec;background:#fff;border-radius:16px;padding:14px 15px;display:flex;gap:12px;align-items:flex-start">
+<div style="width:34px;height:34px;flex:none;border-radius:11px;background:#e7edfd;display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:20px;line-height:1;color:#2f5fd0;font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">photo_camera</span></div>
+<div style="display:flex;flex-direction:column;gap:3px">
+<span style="font-weight:700;font-size:15px">Camera access</span>
+<span style="font-size:13.5px;line-height:1.45;color:#5c6270">Used only for AR mode. Everything else works without it.</span>
+</div>
+</div>
+<div style="margin-top:auto;display:flex;flex-direction:column;gap:10px">
+<div onClick="{{ allowCamera }}" style="height:54px;border-radius:15px;background:#2f5fd0;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16.5px;cursor:pointer" style-hover="background:#2247a3">Allow camera</div>
+<div onClick="{{ allowCamera }}" style="height:48px;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:15px;color:#5c6270;cursor:pointer" style-hover="color:#23262e">Skip — use without AR</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isHome }}">
+<div style="flex:1;overflow:auto;display:flex;flex-direction:column">
+<div style="flex:none;padding:12px 20px 6px;display:flex;align-items:center;justify-content:space-between">
+<div style="display:flex;flex-direction:column">
+<span style="font:600 12.5px 'Source Sans 3',sans-serif;color:#8a90a0">Wednesday</span>
+<span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:25px;letter-spacing:-.02em">Hi, Ana</span>
+</div>
+<div onClick="{{ goProgress }}" style="width:42px;height:42px;border-radius:14px;background:#fff;border:1px solid #e2e5ec;display:flex;align-items:center;justify-content:center;cursor:pointer"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:22px;line-height:1;color:#2f5fd0;font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">person</span></div>
+</div>
+
+<div style="padding:10px 20px 0;display:flex;flex-direction:column;gap:14px">
+<div onClick="{{ continueLesson }}" style="background:#fff;border:1px solid #e2e5ec;border-radius:20px;padding:14px;display:flex;gap:13px;align-items:center;cursor:pointer" style-hover="border-color:#2f5fd0">
+<div style="width:74px;height:74px;flex:none;border-radius:14px;background:#f1f4fa;overflow:hidden">
+<x-import component-from-global-scope="OrganThumb" from="./organ-model.js?v=2" organ="heart" hint-size="74px,74px"></x-import>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:6px">
+<span style="font:600 11.5px ui-monospace,monospace;color:#2f5fd0;letter-spacing:.04em">CONTINUE</span>
+<span style="font-weight:700;font-size:16.5px;line-height:1.2">How the heart works</span>
+<div style="display:flex;align-items:center;gap:8px">
+<div style="flex:1;height:7px;border-radius:6px;background:#eceef2;overflow:hidden"><div style="width:37%;height:100%;background:#2f5fd0"></div></div>
+<span style="font:600 11.5px ui-monospace,monospace;color:#8a90a0">3/8</span>
+</div>
+</div>
+</div>
+
+<div onClick="{{ goAr }}" style="border-radius:20px;background:#23262e;padding:16px 18px;display:flex;align-items:center;gap:14px;cursor:pointer;position:relative;overflow:hidden" style-hover="background:#14161c">
+<div style="width:46px;height:46px;flex:none;border-radius:14px;background:#d9822b;display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:24px;line-height:1;color:#fff;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;">view_in_ar</span></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:2px">
+<span style="color:#fff;font-weight:700;font-size:17px">Explore in AR</span>
+<span style="color:#a7adbb;font-size:13.5px">Place an organ on your table</span>
+</div>
+<span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:24px;line-height:1;color:#fff;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;">chevron_right</span>
+</div>
+
+<div onClick="{{ goTutor }}" style="background:#fff;border:1px solid #e2e5ec;border-radius:20px;padding:14px 16px;display:flex;align-items:center;gap:13px;cursor:pointer" style-hover="border-color:#2f5fd0">
+<div style="width:42px;height:42px;flex:none;border-radius:13px;background:#e7edfd;display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:22px;line-height:1;color:#2f5fd0;font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">smart_toy</span></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:1px">
+<span style="font-weight:700;font-size:16px">Ask the Tutor</span>
+<span style="font-size:13.5px;color:#8a90a0">Answers saved on this device</span>
+</div>
+<span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:24px;line-height:1;color:#8a90a0;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;">chevron_right</span>
+</div>
+
+<div style="display:flex;align-items:baseline;justify-content:space-between">
+<span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:17px">Organ systems</span>
+<span onClick="{{ goLessons }}" style="font:600 13px 'Source Sans 3',sans-serif;color:#2f5fd0;cursor:pointer">All lessons</span>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;padding-bottom:16px">
+<sc-for list="{{ organs }}" as="o" hint-placeholder-count="6">
+<div onClick="{{ o.open }}" style="background:#fff;border:1px solid #e2e5ec;border-radius:18px;padding:12px;display:flex;flex-direction:column;gap:9px;cursor:pointer" style-hover="border-color:#2f5fd0">
+<div style="height:74px;border-radius:12px;background:#f1f4fa;overflow:hidden">
+<x-import component-from-global-scope="OrganThumb" from="./organ-model.js?v=2" organ="{{ o.id }}" hint-size="100%,74px"></x-import>
+</div>
+<span style="font-weight:700;font-size:15px">{{ o.name }}</span>
+<span style="font:11.5px ui-monospace,monospace;color:#8a90a0">{{ o.ratio }}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isLessons }}">
+<div style="flex:1;overflow:auto;display:flex;flex-direction:column">
+<div style="flex:none;padding:12px 20px 10px;display:flex;align-items:baseline;justify-content:space-between">
+<span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:25px;letter-spacing:-.02em">Lessons</span>
+<span style="font:11.5px ui-monospace,monospace;color:#8a90a0">6 systems · 36 lessons</span>
+</div>
+<div style="padding:0 20px;display:flex;flex-direction:column;gap:11px;padding-bottom:16px">
+<div style="height:44px;border-radius:14px;background:#fff;border:1px solid #e2e5ec;display:flex;align-items:center;gap:9px;padding:0 14px;color:#8a90a0;font-size:15px"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:20px;line-height:1;color:#a7adbb;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;">search</span><span>Search lessons…</span></div>
+<div style="display:flex;gap:8px">
+<div style="padding:7px 15px;border-radius:11px;background:#2f5fd0;color:#fff;font-weight:600;font-size:13.5px">All</div>
+<div style="padding:7px 15px;border-radius:11px;background:#fff;border:1px solid #e2e5ec;font-weight:600;font-size:13.5px;color:#5c6270">Started</div>
+<div style="padding:7px 15px;border-radius:11px;background:#fff;border:1px solid #e2e5ec;font-weight:600;font-size:13.5px;color:#5c6270">Finished</div>
+</div>
+<sc-for list="{{ organs }}" as="o" hint-placeholder-count="6">
+<div onClick="{{ o.open }}" style="background:#fff;border:1px solid #e2e5ec;border-radius:18px;padding:13px;display:flex;gap:13px;align-items:center;cursor:pointer" style-hover="border-color:#2f5fd0">
+<div style="width:56px;height:56px;flex:none;border-radius:13px;background:#f1f4fa;overflow:hidden">
+<x-import component-from-global-scope="OrganThumb" from="./organ-model.js?v=2" organ="{{ o.id }}" hint-size="56px,56px"></x-import>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:6px">
+<span style="font-weight:700;font-size:16px">{{ o.system }}</span>
+<span style="font-size:13.5px;color:#5c6270;line-height:1.35">{{ o.blurb }}</span>
+<div style="display:flex;align-items:center;gap:8px">
+<div style="flex:1;height:6px;border-radius:6px;background:#eceef2;overflow:hidden"><div style="height:100%;background:#2f5fd0;width:{{ o.pct }}"></div></div>
+<span style="font:600 11.5px ui-monospace,monospace;color:#8a90a0">{{ o.ratio }}</span>
+</div>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isLesson }}">
+<div style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+<div style="flex:none;padding:8px 16px 12px;display:flex;align-items:center;gap:10px">
+<div onClick="{{ back }}" style="width:38px;height:38px;border-radius:12px;background:#fff;border:1px solid #e2e5ec;display:flex;align-items:center;justify-content:center;cursor:pointer"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:20px;line-height:1;color:#3d424e;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;">arrow_back</span></div>
+<div style="flex:1;display:flex;flex-direction:column">
+<span style="font-weight:700;font-size:15.5px">{{ lessonTitle }}</span>
+<span style="font:11px ui-monospace,monospace;color:#8a90a0">{{ stepLabel }}</span>
+</div>
+</div>
+<div style="flex:none;padding:0 20px 14px;display:flex;gap:5px">
+<sc-for list="{{ stepBars }}" as="b" hint-placeholder-count="4">
+<div style="flex:1;height:5px;border-radius:4px;background:{{ b.bg }}"></div>
+</sc-for>
+</div>
+<div style="flex:1;overflow:auto;padding:0 20px;display:flex;flex-direction:column;gap:15px">
+<div style="flex:none;height:190px;border-radius:18px;background:radial-gradient(120% 100% at 50% 25%,#eef2fb 0%,#f8f9fb 72%);overflow:hidden;position:relative">
+<x-import component-from-global-scope="OrganModel" from="./organ-model.js?v=2" organ="heart" hint-size="100%,190px"></x-import>
+<span style="position:absolute;bottom:10px;left:12px;font:10px ui-monospace,monospace;color:#9aa0ae">{{ lessonFigure }}</span>
+</div>
+<h2 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:26px;line-height:1.15;letter-spacing:-.02em;text-wrap:pretty">{{ sectionTitle }}</h2>
+<p style="margin:0;font-size:16.5px;line-height:1.55;color:#3d424e;text-wrap:pretty">{{ sectionBody }}</p>
+<div style="border:1px solid #e2e5ec;background:#fff;border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:5px">
+<span style="font:600 11px ui-monospace,monospace;color:#d9822b;letter-spacing:.05em">KEY WORD</span>
+<span style="font-weight:700;font-size:16px">{{ keyword }}</span>
+<span style="font-size:14.5px;line-height:1.45;color:#5c6270">{{ keywordDef }}</span>
+</div>
+</div>
+<div style="flex:none;padding:14px 20px 16px;display:flex;gap:10px;background:#f6f7f9;border-top:1px solid #e8eaef">
+<div onClick="{{ goAr }}" style="flex:none;width:120px;height:50px;border-radius:14px;border:1.5px solid #2f5fd0;color:#2f5fd0;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;cursor:pointer" style-hover="background:#e7edfd">See in AR</div>
+<div onClick="{{ nextStep }}" style="flex:1;height:50px;border-radius:14px;background:#2f5fd0;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;cursor:pointer" style-hover="background:#2247a3">{{ nextLabel }}</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isOrgan }}">
+<div style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+<div style="flex:none;padding:8px 16px 10px;display:flex;align-items:center;gap:10px">
+<div onClick="{{ back }}" style="width:38px;height:38px;border-radius:12px;background:#fff;border:1px solid #e2e5ec;display:flex;align-items:center;justify-content:center;cursor:pointer"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:20px;line-height:1;color:#3d424e;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;">arrow_back</span></div>
+<span style="flex:1;font-weight:700;font-size:16px">{{ organName }}</span>
+<div onClick="{{ goViewer }}" style="height:36px;padding:0 13px;border-radius:11px;background:#fff;border:1px solid #e2e5ec;display:flex;align-items:center;font:600 13px 'Source Sans 3',sans-serif;color:#5c6270;cursor:pointer">3D</div>
+</div>
+<div style="flex:1;overflow:auto;padding:0 20px;display:flex;flex-direction:column;gap:14px">
+<div style="flex:none;height:210px;border-radius:18px;background:radial-gradient(120% 100% at 50% 25%,#eef2fb 0%,#f8f9fb 72%);overflow:hidden;position:relative">
+<x-import component-from-global-scope="OrganModel" from="./organ-model.js?v=2" organ="{{ organId }}" hint-size="100%,210px"></x-import>
+<span style="position:absolute;bottom:10px;left:12px;font:10px ui-monospace,monospace;color:#9aa0ae">{{ organFile }}</span>
+</div>
+<h2 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:28px;letter-spacing:-.02em">{{ organName }}</h2>
+<p style="margin:0;font-size:16.5px;line-height:1.5;color:#3d424e;text-wrap:pretty">{{ organBlurb }}</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div style="background:#fff;border:1px solid #e2e5ec;border-radius:15px;padding:12px;display:flex;flex-direction:column;gap:2px"><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:22px">{{ organStatA }}</span><span style="font-size:12.5px;color:#8a90a0">{{ organStatALabel }}</span></div>
+<div style="background:#fff;border:1px solid #e2e5ec;border-radius:15px;padding:12px;display:flex;flex-direction:column;gap:2px"><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:22px">{{ organStatB }}</span><span style="font-size:12.5px;color:#8a90a0">{{ organStatBLabel }}</span></div>
+</div>
+<span style="font:600 11px ui-monospace,monospace;color:#8a90a0;letter-spacing:.05em">PARTS</span>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{ organParts }}" as="p" hint-placeholder-count="5">
+<div style="padding:8px 13px;border-radius:11px;background:#fff;border:1px solid #e2e5ec;font-weight:600;font-size:14px;color:#3d424e">{{ p.name }}</div>
+</sc-for>
+</div>
+<div style="height:6px"></div>
+</div>
+<div style="flex:none;padding:14px 20px 16px;display:flex;gap:10px;border-top:1px solid #e8eaef">
+<div onClick="{{ goQuiz }}" style="flex:1;height:50px;border-radius:14px;border:1.5px solid #e2e5ec;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15.5px;cursor:pointer" style-hover="border-color:#2f5fd0;color:#2f5fd0">Quiz me</div>
+<div onClick="{{ goAr }}" style="flex:1;height:50px;border-radius:14px;background:#2f5fd0;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15.5px;cursor:pointer" style-hover="background:#2247a3">View in AR</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isArScan }}">
+<div style="flex:1;position:relative;background:#2b2e35;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;overflow:hidden">
+<div style="position:absolute;inset:0;background:radial-gradient(120% 80% at 50% 60%,#3a3e48 0%,#22252b 100%)"></div>
+<div style="position:absolute;top:12px;left:16px;right:16px;display:flex;align-items:center;justify-content:space-between">
+<div onClick="{{ back }}" style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;cursor:pointer"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:20px;line-height:1;color:#fff;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;">close</span></div>
+<div style="padding:7px 12px;border-radius:11px;background:rgba(255,255,255,.14);color:#fff;font:11px ui-monospace,monospace;display:flex;align-items:center;gap:7px"><span style="width:7px;height:7px;border-radius:50%;background:#d9822b;animation:pulse 1.4s infinite"></span>ARCore · scanning</div>
+</div>
+<div style="width:230px;height:86px;border:2px dashed rgba(255,255,255,.55);border-radius:50%;transform:rotate(-7deg);animation:pulse 2.4s infinite"></div>
+<div style="text-align:center;color:#fff;display:flex;flex-direction:column;gap:7px;padding:0 40px;z-index:1">
+<span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:21px">Point at a flat surface</span>
+<span style="font-size:15px;color:rgba(255,255,255,.7);line-height:1.45">A table or the floor works best. Then tap to place the {{ organLower }}.</span>
+</div>
+<div style="position:absolute;bottom:22px;left:20px;right:20px;display:flex;gap:10px">
+<div onClick="{{ goViewer }}" style="flex:none;padding:0 18px;height:52px;border-radius:15px;border:1.5px solid rgba(255,255,255,.4);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:15px;cursor:pointer">No camera?</div>
+<div onClick="{{ place }}" style="flex:1;height:52px;border-radius:15px;background:#d9822b;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16.5px;cursor:pointer" style-hover="background:#bd6d1c">Place here</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isArView }}">
+<div style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+<div style="flex:1;position:relative;background:radial-gradient(120% 80% at 50% 55%,#3a3e48 0%,#22252b 100%);display:flex;align-items:center;justify-content:center;overflow:hidden">
+<div style="position:absolute;bottom:0;left:0;right:0;height:34%;background:linear-gradient(#00000000,#00000055)"></div>
+<div style="width:216px;height:252px;border:2px solid rgba(217,130,43,.85);border-radius:20px;background:rgba(217,130,43,.1);position:relative;animation:rise .35s ease-out">
+<x-import component-from-global-scope="OrganModel" from="./organ-model.js?v=2" organ="{{ organId }}" hint-size="212px,248px"></x-import>
+<span style="position:absolute;bottom:-24px;left:0;right:0;text-align:center;font:10px ui-monospace,monospace;color:#f4dcc4">{{ selectedPart }} highlighted</span>
+</div>
+<div style="position:absolute;top:14px;left:16px;right:16px;display:flex;align-items:center;justify-content:space-between">
+<div onClick="{{ back }}" style="height:36px;padding:0 13px;border-radius:11px;background:rgba(255,255,255,.14);color:#fff;display:flex;align-items:center;gap:6px;font-weight:600;font-size:14px;cursor:pointer"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:18px;line-height:1;color:#fff;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;">arrow_back</span><span>{{ organName }}</span></div>
+<div style="padding:7px 11px;border-radius:11px;background:rgba(255,255,255,.14);color:#fff;font:10.5px ui-monospace,monospace">surface locked ✓</div>
+</div>
+<sc-if value="{{ labelsOn }}" hint-placeholder-val="{{ true }}">
+<div style="position:absolute;inset:0;pointer-events:none">
+<sc-for list="{{ arLabels }}" as="l" hint-placeholder-count="3">
+<div style="position:absolute;top:{{ l.top }};left:{{ l.left }};padding:4px 8px;border-radius:7px;background:rgba(255,255,255,.92);color:#23262e;font:600 11.5px 'Source Sans 3',sans-serif;white-space:nowrap">{{ l.name }}</div>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{ isRadial }}">
+<div style="position:absolute;bottom:20px;right:20px;width:158px;height:158px">
+<div style="position:absolute;inset:0;border:1.5px dashed rgba(255,255,255,.3);border-radius:50%"></div>
+<div style="position:absolute;bottom:4px;right:4px;width:56px;height:56px;border-radius:50%;background:#d9822b;color:#fff;display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:24px;line-height:1;color:#fff;font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">build</span></div>
+<div onClick="{{ setRotate }}" style="position:absolute;top:2px;right:16px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.16);border:1.5px solid rgba(255,255,255,.5);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:20px;line-height:1;color:#fff;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;">3d_rotation</span></div>
+<div onClick="{{ setScale }}" style="position:absolute;top:38px;left:6px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.16);border:1.5px solid rgba(255,255,255,.5);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:20px;line-height:1;color:#fff;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;">zoom_out_map</span></div>
+<div onClick="{{ setMove }}" style="position:absolute;bottom:14px;left:0;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.16);border:1.5px solid rgba(255,255,255,.5);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:20px;line-height:1;color:#fff;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;">open_with</span></div>
+</div>
+</sc-if>
+<sc-if value="{{ isGesture }}">
+<div style="position:absolute;bottom:18px;left:18px;right:18px;border:1.5px dashed rgba(255,255,255,.4);border-radius:14px;padding:11px;text-align:center;font:11.5px/1.6 ui-monospace,monospace;color:rgba(255,255,255,.78)">drag = rotate · pinch = scale · two fingers = move</div>
+<div style="position:absolute;right:18px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px">
+<div onClick="{{ toggleLabels }}" style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.16);border:1.5px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;cursor:pointer"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:20px;line-height:1;color:#fff;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;">label</span></div>
+<div onClick="{{ reset }}" style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.16);border:1.5px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;cursor:pointer"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:20px;line-height:1;color:#fff;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;">refresh</span></div>
+</div>
+</sc-if>
+</div>
+
+<sc-if value="{{ isButtons }}">
+<div style="flex:none;padding:12px 16px 10px;background:#23262e;display:flex;flex-direction:column;gap:9px">
+<div style="display:flex;gap:8px">
+<sc-for list="{{ tools }}" as="t" hint-placeholder-count="3">
+<div onClick="{{ t.pick }}" style="flex:1;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14.5px;cursor:pointer;background:{{ t.bg }};color:{{ t.fg }}">{{ t.name }}</div>
+</sc-for>
+</div>
+<div style="display:flex;gap:8px">
+<div onClick="{{ toggleLabels }}" style="flex:1;height:48px;border-radius:13px;background:rgba(255,255,255,.1);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14.5px;cursor:pointer">{{ labelBtn }}</div>
+<div onClick="{{ reset }}" style="flex:1;height:48px;border-radius:13px;background:rgba(255,255,255,.1);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14.5px;cursor:pointer">Reset</div>
+<div onClick="{{ goOrgan }}" style="flex:1;height:48px;border-radius:13px;background:rgba(255,255,255,.1);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14.5px;cursor:pointer">Info</div>
+</div>
+</div>
+</sc-if>
+
+<div style="flex:none;background:#fff;border-radius:22px 22px 0 0;padding:12px 18px 18px;display:flex;flex-direction:column;gap:10px;box-shadow:0 -6px 22px -12px rgba(20,24,35,.35)">
+<div style="width:42px;height:4px;border-radius:4px;background:#d7dbe3;margin:0 auto"></div>
+<div style="display:flex;align-items:baseline;justify-content:space-between">
+<span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.01em">{{ selectedPart }}</span>
+<span style="font:11px ui-monospace,monospace;color:#8a90a0">tap a label to switch</span>
+</div>
+<p style="margin:0;font-size:15px;line-height:1.5;color:#3d424e;text-wrap:pretty">{{ partBody }}</p>
+<div style="display:flex;gap:8px;overflow:auto">
+<sc-for list="{{ organParts }}" as="p" hint-placeholder-count="4">
+<div onClick="{{ p.select }}" style="flex:none;padding:8px 13px;border-radius:11px;font-weight:600;font-size:13.5px;cursor:pointer;background:{{ p.bg }};color:{{ p.fg }}">{{ p.name }}</div>
+</sc-for>
+</div>
+<div onClick="{{ continueLesson }}" style="height:48px;border-radius:14px;background:#2f5fd0;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15.5px;cursor:pointer" style-hover="background:#2247a3">Read the full lesson</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isViewer }}">
+<div style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+<div style="flex:none;padding:8px 16px 10px;display:flex;align-items:center;gap:10px">
+<div onClick="{{ back }}" style="width:38px;height:38px;border-radius:12px;background:#fff;border:1px solid #e2e5ec;display:flex;align-items:center;justify-content:center;cursor:pointer"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:20px;line-height:1;color:#3d424e;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;">arrow_back</span></div>
+<div style="flex:1;display:flex;flex-direction:column">
+<span style="font-weight:700;font-size:15.5px">{{ organName }} · 3D</span>
+<span style="font:11px ui-monospace,monospace;color:#8a90a0">no camera needed</span>
+</div>
+</div>
+<div style="flex:1;margin:0 20px;border-radius:20px;background:radial-gradient(120% 100% at 50% 30%,#eef2fb 0%,#f8f9fb 72%);position:relative;overflow:hidden">
+<x-import component-from-global-scope="OrganModel" from="./organ-model.js?v=2" organ="{{ organId }}" hint-size="100%,100%"></x-import>
+<span style="position:absolute;top:12px;left:14px;font:10px ui-monospace,monospace;color:#9aa0ae">{{ organFile }} · ViroReact scene</span>
+<div style="position:absolute;bottom:14px;left:0;right:0;display:flex;justify-content:center;gap:10px">
+<div style="width:44px;height:44px;border-radius:50%;background:#fff;border:1px solid #e2e5ec;display:flex;align-items:center;justify-content:center;font-size:15px;color:#3d424e"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:20px;line-height:1;color:#3d424e;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;">rotate_left</span></div>
+<div style="width:44px;height:44px;border-radius:50%;background:#fff;border:1px solid #e2e5ec;display:flex;align-items:center;justify-content:center;font-size:15px;color:#3d424e"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:20px;line-height:1;color:#3d424e;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;">zoom_in</span></div>
+<div style="width:44px;height:44px;border-radius:50%;background:#fff;border:1px solid #e2e5ec;display:flex;align-items:center;justify-content:center;font-size:15px;color:#3d424e"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:20px;line-height:1;color:#3d424e;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;">zoom_out</span></div>
+</div>
+</div>
+<div style="flex:none;padding:14px 20px 16px;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;gap:8px">
+<div onClick="{{ toggleLabels }}" style="flex:1;height:44px;border-radius:12px;background:#fff;border:1px solid #e2e5ec;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;cursor:pointer">{{ labelBtn }}</div>
+<div style="flex:1;height:44px;border-radius:12px;background:#fff;border:1px solid #e2e5ec;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px">Cutaway</div>
+<div onClick="{{ reset }}" style="flex:1;height:44px;border-radius:12px;background:#fff;border:1px solid #e2e5ec;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;cursor:pointer">Reset</div>
+</div>
+<div onClick="{{ goAr }}" style="height:50px;border-radius:14px;border:1.5px solid #2f5fd0;color:#2f5fd0;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15.5px;cursor:pointer" style-hover="background:#e7edfd">Switch to AR mode</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isQuiz }}">
+<div style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+<div style="flex:none;padding:8px 16px 10px;display:flex;align-items:center;gap:10px">
+<div onClick="{{ goHome }}" style="width:38px;height:38px;border-radius:12px;background:#fff;border:1px solid #e2e5ec;display:flex;align-items:center;justify-content:center;cursor:pointer"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:20px;line-height:1;color:#3d424e;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;">close</span></div>
+<span style="flex:1;font-weight:700;font-size:15.5px">Heart quiz</span>
+<span style="font:600 12px ui-monospace,monospace;color:#8a90a0">{{ qLabel }}</span>
+</div>
+<div style="flex:none;padding:0 20px 16px"><div style="height:6px;border-radius:5px;background:#eceef2;overflow:hidden"><div style="height:100%;background:#2f5fd0;width:{{ qPct }}"></div></div></div>
+<div style="flex:1;overflow:auto;padding:0 20px;display:flex;flex-direction:column;gap:13px">
+<h2 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:24px;line-height:1.2;letter-spacing:-.015em;text-wrap:pretty">{{ question }}</h2>
+<sc-for list="{{ options }}" as="op" hint-placeholder-count="4">
+<div onClick="{{ op.pick }}" style="border-radius:16px;padding:15px;display:flex;align-items:center;gap:12px;cursor:pointer;border:1.5px solid {{ op.bc }};background:{{ op.bg }}">
+<div style="width:22px;height:22px;flex:none;border-radius:50%;border:2px solid {{ op.dot }}"></div>
+<span style="font-weight:600;font-size:16px;color:#23262e">{{ op.text }}</span>
+</div>
+</sc-for>
+<sc-if value="{{ checked }}">
+<div style="border-radius:16px;padding:14px;background:#fff;border:1px solid #e2e5ec;display:flex;flex-direction:column;gap:4px;animation:rise .25s ease-out">
+<span style="font:600 11px ui-monospace,monospace;letter-spacing:.05em;color:{{ verdictColor }}">{{ verdict }}</span>
+<span style="font-size:15px;line-height:1.5;color:#3d424e">{{ explain }}</span>
+</div>
+</sc-if>
+</div>
+<div style="flex:none;padding:14px 20px 16px">
+<div onClick="{{ quizAction }}" style="height:52px;border-radius:15px;background:{{ quizBtnBg }};color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16.5px;cursor:pointer">{{ quizBtnLabel }}</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isResults }}">
+<div style="flex:1;overflow:auto;padding:16px 20px 20px;display:flex;flex-direction:column;gap:14px">
+<div style="flex:none;height:170px;border-radius:18px;background:radial-gradient(120% 100% at 50% 25%,#eef2fb 0%,#f8f9fb 72%);position:relative;overflow:hidden">
+<x-import component-from-global-scope="OrganModel" from="./organ-model.js?v=2" organ="heart" hint-size="100%,170px"></x-import>
+<div style="position:absolute;inset:0;pointer-events:none">
+<div style="position:absolute;top:18px;left:26px;width:10px;height:10px;border-radius:3px;background:#2f5fd0;transform:rotate(28deg)"></div>
+<div style="position:absolute;top:40px;left:66px;width:8px;height:8px;border-radius:50%;background:#d9822b"></div>
+<div style="position:absolute;top:14px;right:44px;width:9px;height:9px;background:#d9822b;transform:rotate(45deg)"></div>
+<div style="position:absolute;top:56px;right:22px;width:11px;height:11px;border-radius:3px;background:#2f5fd0;transform:rotate(-18deg)"></div>
+<div style="position:absolute;bottom:26px;left:36px;width:9px;height:9px;border-radius:50%;background:#2f5fd0"></div>
+<div style="position:absolute;bottom:16px;right:58px;width:8px;height:8px;background:#d9822b;transform:rotate(45deg)"></div>
+<div style="position:absolute;bottom:44px;right:30px;width:7px;height:7px;border-radius:50%;background:#d9822b"></div>
+</div>
+</div>
+<div style="text-align:center;display:flex;flex-direction:column;gap:5px">
+<span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:46px;letter-spacing:-.03em;line-height:1">{{ score }}</span>
+<span style="font-size:16px;color:#5c6270">{{ scoreNote }}</span>
+</div>
+<div style="background:#fff;border:1px solid #e2e5ec;border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:11px">
+<span style="font:600 11px ui-monospace,monospace;color:#8a90a0;letter-spacing:.05em">REVIEW</span>
+<sc-for list="{{ review }}" as="r" hint-placeholder-count="5">
+<div style="display:flex;gap:11px;align-items:flex-start">
+<span style="width:20px;flex:none;text-align:center;font-weight:700;font-size:15px;color:{{ r.color }}">{{ r.mark }}</span>
+<div style="flex:1;display:flex;flex-direction:column;gap:2px">
+<span style="font-size:14.5px;line-height:1.35;color:#23262e">{{ r.q }}</span>
+<span style="font-size:13px;color:#8a90a0">{{ r.a }}</span>
+</div>
+</div>
+</sc-for>
+</div>
+<div onClick="{{ goAchievements }}" style="background:#23262e;border-radius:18px;padding:14px;display:flex;gap:12px;align-items:center;cursor:pointer">
+<div style="width:44px;height:44px;flex:none;border-radius:13px;background:#d9822b;display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:26px;line-height:1;color:#fff;font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">workspace_premium</span></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:1px">
+<span style="color:#fff;font-weight:700;font-size:15.5px">Badge earned: Heart Explorer</span>
+<span style="color:#a7adbb;font-size:13px">Saved to this device</span>
+</div>
+<span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:24px;line-height:1;color:#fff;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;">chevron_right</span>
+</div>
+<div style="display:flex;gap:10px;margin-top:auto">
+<div onClick="{{ retryQuiz }}" style="flex:1;height:50px;border-radius:14px;background:#fff;border:1.5px solid #e2e5ec;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15.5px;cursor:pointer" style-hover="border-color:#2f5fd0;color:#2f5fd0">Try again</div>
+<div onClick="{{ continueLesson }}" style="flex:1;height:50px;border-radius:14px;background:#2f5fd0;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15.5px;cursor:pointer" style-hover="background:#2247a3">Back to lesson</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isProgress }}">
+<div style="flex:1;overflow:auto;display:flex;flex-direction:column">
+<div style="flex:none;padding:12px 20px 12px;display:flex;align-items:center;justify-content:space-between">
+<span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:25px;letter-spacing:-.02em">My learning</span>
+<span style="font:11px ui-monospace,monospace;color:#8a90a0">local · SQLite</span>
+</div>
+<div style="padding:0 20px 16px;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;gap:10px">
+<div style="flex:1;background:#fff;border:1px solid #e2e5ec;border-radius:16px;padding:13px;display:flex;flex-direction:column;gap:1px"><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:24px">12</span><span style="font-size:12.5px;color:#8a90a0">lessons</span></div>
+<div style="flex:1;background:#fff;border:1px solid #e2e5ec;border-radius:16px;padding:13px;display:flex;flex-direction:column;gap:1px"><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:24px">5</span><span style="font-size:12.5px;color:#8a90a0">day streak</span></div>
+<div style="flex:1;background:#fff;border:1px solid #e2e5ec;border-radius:16px;padding:13px;display:flex;flex-direction:column;gap:1px"><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:24px">83%</span><span style="font-size:12.5px;color:#8a90a0">avg quiz</span></div>
+</div>
+<div style="background:#fff;border:1px solid #e2e5ec;border-radius:18px;padding:15px;display:flex;flex-direction:column;gap:13px">
+<span style="font:600 11px ui-monospace,monospace;color:#8a90a0;letter-spacing:.05em">BY SYSTEM</span>
+<sc-for list="{{ organs }}" as="o" hint-placeholder-count="6">
+<div style="display:flex;align-items:center;gap:11px">
+<span style="width:78px;flex:none;font-weight:600;font-size:14px">{{ o.name }}</span>
+<div style="flex:1;height:9px;border-radius:6px;background:#eceef2;overflow:hidden"><div style="height:100%;background:#2f5fd0;width:{{ o.pct }}"></div></div>
+<span style="width:34px;flex:none;text-align:right;font:600 11.5px ui-monospace,monospace;color:#8a90a0">{{ o.ratio }}</span>
+</div>
+</sc-for>
+</div>
+<div onClick="{{ goAchievements }}" style="background:#fff;border:1px solid #e2e5ec;border-radius:18px;padding:15px;display:flex;align-items:center;gap:12px;cursor:pointer" style-hover="border-color:#2f5fd0">
+<div style="width:42px;height:42px;flex:none;border-radius:13px;background:#fdf1e3;display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:24px;line-height:1;color:#d9822b;font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">workspace_premium</span></div>
+<div style="flex:1;display:flex;flex-direction:column"><span style="font-weight:700;font-size:16px">Achievements</span><span style="font-size:13px;color:#8a90a0">7 of 24 earned</span></div>
+<span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:24px;line-height:1;color:#8a90a0;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;">chevron_right</span>
+</div>
+<span style="font:600 11px ui-monospace,monospace;color:#8a90a0;letter-spacing:.05em">RECENTLY VIEWED</span>
+<div style="display:flex;gap:10px;overflow:auto">
+<sc-for list="{{ recent }}" as="r" hint-placeholder-count="3">
+<div onClick="{{ r.open }}" style="flex:none;width:110px;display:flex;flex-direction:column;gap:7px;cursor:pointer">
+<div style="height:78px;border-radius:13px;background:#f1f4fa;overflow:hidden">
+<x-import component-from-global-scope="OrganThumb" from="./organ-model.js?v=2" organ="{{ r.id }}" hint-size="110px,78px"></x-import>
+</div>
+<span style="font-weight:600;font-size:13.5px">{{ r.name }}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isAchievements }}">
+<div style="flex:1;overflow:auto;display:flex;flex-direction:column">
+<div style="flex:none;padding:8px 16px 12px;display:flex;align-items:center;gap:10px">
+<div onClick="{{ goProgress }}" style="width:38px;height:38px;border-radius:12px;background:#fff;border:1px solid #e2e5ec;display:flex;align-items:center;justify-content:center;cursor:pointer"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:20px;line-height:1;color:#3d424e;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;">arrow_back</span></div>
+<span style="flex:1;font-weight:700;font-size:16px">Achievements</span>
+<span style="font:11px ui-monospace,monospace;color:#8a90a0">7 / 24</span>
+</div>
+<div style="padding:0 20px 18px;display:flex;flex-direction:column;gap:13px">
+<div style="border-radius:18px;background:#23262e;padding:15px;display:flex;gap:13px;align-items:center">
+<div style="width:58px;height:58px;flex:none;border-radius:16px;background:#d9822b;display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:34px;line-height:1;color:#fff;font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">workspace_premium</span></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:2px">
+<span style="color:#fff;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:18px">Heart Explorer</span>
+<span style="color:#a7adbb;font-size:13.5px;line-height:1.4">Finished three heart lessons and a quiz</span>
+<span style="color:#d9822b;font:600 11px ui-monospace,monospace">EARNED TODAY</span>
+</div>
+</div>
+<span style="font:600 11px ui-monospace,monospace;color:#8a90a0;letter-spacing:.05em">EARNED</span>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+<sc-for list="{{ earned }}" as="b" hint-placeholder-count="6">
+<div style="background:#fff;border:1px solid #e2e5ec;border-radius:16px;padding:11px;display:flex;flex-direction:column;align-items:center;gap:8px">
+<div style="width:38px;height:38px;border-radius:12px;background:#e7edfd;display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:22px;line-height:1;color:#2f5fd0;font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">{{ b.icon }}</span></div>
+<span style="font-weight:600;font-size:12.5px;text-align:center;line-height:1.25">{{ b.name }}</span>
+</div>
+</sc-for>
+</div>
+<span style="font:600 11px ui-monospace,monospace;color:#8a90a0;letter-spacing:.05em">LOCKED</span>
+<sc-for list="{{ locked }}" as="b" hint-placeholder-count="3">
+<div style="background:#fff;border:1.5px dashed #d7dbe3;border-radius:16px;padding:13px;display:flex;gap:12px;align-items:center">
+<div style="width:40px;height:40px;flex:none;border-radius:12px;background:#f1f3f7;display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:20px;line-height:1;color:#a7adbb;font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">lock</span></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:2px">
+<span style="font-weight:700;font-size:15px;color:#5c6270">{{ b.name }}</span>
+<span style="font-size:13px;color:#8a90a0">{{ b.how }}</span>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isTutor }}">
+<div style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+<div style="flex:none;padding:8px 16px 12px;display:flex;align-items:center;gap:10px">
+<div onClick="{{ goHome }}" style="width:38px;height:38px;border-radius:12px;background:#fff;border:1px solid #e2e5ec;display:flex;align-items:center;justify-content:center;cursor:pointer"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:20px;line-height:1;color:#3d424e;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;">arrow_back</span></div>
+<div style="flex:1;display:flex;flex-direction:column">
+<span style="font-weight:700;font-size:15.5px">Ask the Tutor</span>
+<span style="font:11px ui-monospace,monospace;color:#8a90a0">{{ tutorStatus }}</span>
+</div>
+<div onClick="{{ toggleNet }}" style="height:34px;padding:0 12px;border-radius:11px;background:#fff;border:1px solid #e2e5ec;display:flex;align-items:center;font:600 12px 'Source Sans 3',sans-serif;color:#5c6270;cursor:pointer">{{ netToggle }}</div>
+</div>
+
+<sc-if value="{{ offline }}">
+<div style="flex:none;margin:0 20px 12px;border:1.5px dashed #d9822b;background:#fdf6ee;border-radius:16px;padding:14px;display:flex;gap:12px;align-items:flex-start">
+<div style="width:32px;height:32px;flex:none;border-radius:10px;background:#d9822b;display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:19px;line-height:1;color:#fff;font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">wifi_off</span></div>
+<div style="display:flex;flex-direction:column;gap:3px">
+<span style="font-weight:700;font-size:15px">AI Tutor requires an internet connection.</span>
+<span style="font-size:13.5px;line-height:1.45;color:#6b6156">Saved answers below still work, and the rest of the app is unaffected.</span>
+</div>
+</div>
+</sc-if>
+
+<div style="flex:1;overflow:auto;padding:0 20px;display:flex;flex-direction:column;gap:11px">
+<sc-for list="{{ msgs }}" as="m" hint-placeholder-count="2">
+<sc-if value="{{ m.bot }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;gap:10px;align-items:flex-start">
+<div style="width:30px;height:30px;flex:none;border-radius:10px;background:#2f5fd0;display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:18px;line-height:1;color:#fff;font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">smart_toy</span></div>
+<div style="max-width:82%;background:#fff;border:1px solid #e2e5ec;border-radius:16px 16px 16px 5px;padding:12px 14px;font-size:15.5px;line-height:1.5;color:#23262e;animation:rise .22s ease-out">{{ m.text }}</div>
+</div>
+</sc-if>
+<sc-if value="{{ m.mine }}">
+<div style="align-self:flex-end;max-width:82%;background:#2f5fd0;color:#fff;border-radius:16px 16px 5px 16px;padding:11px 14px;font-size:15.5px;line-height:1.45;animation:rise .22s ease-out">{{ m.text }}</div>
+</sc-if>
+</sc-for>
+<div style="height:4px"></div>
+</div>
+
+<div style="flex:none;padding:12px 20px 16px;display:flex;flex-direction:column;gap:10px;border-top:1px solid #e8eaef">
+<span style="font:600 11px ui-monospace,monospace;color:#8a90a0;letter-spacing:.05em">SUGGESTED</span>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{ suggested }}" as="s" hint-placeholder-count="5">
+<div onClick="{{ s.ask }}" style="padding:9px 13px;border-radius:12px;background:#fff;border:1px solid #e2e5ec;font-weight:600;font-size:13.5px;color:#3d424e;cursor:pointer" style-hover="border-color:#2f5fd0;color:#2f5fd0">{{ s.q }}</div>
+</sc-for>
+</div>
+<div style="height:48px;border-radius:14px;background:{{ inputBg }};border:1px solid #e2e5ec;display:flex;align-items:center;justify-content:space-between;padding:0 14px;color:#a7adbb;font-size:15px">
+<span>{{ inputHint }}</span>
+<div style="width:32px;height:32px;border-radius:10px;background:{{ sendBg }};display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:18px;line-height:1;color:#fff;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;">arrow_upward</span></div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ showTabs }}">
+<div style="flex:none;height:66px;background:#fff;border-top:1px solid #e8eaef;display:flex;align-items:stretch">
+<sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
+<div onClick="{{ t.go }}" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer">
+<span style="font-family:'Material Symbols Rounded';font-weight:400;font-size:24px;line-height:1;color:{{ t.color }};font-variation-settings:'FILL' {{ t.fillNum }},'wght' 400,'GRAD' 0,'opsz' 24">{{ t.icon }}</span>
+<span style="font-weight:600;font-size:11px;color:{{ t.color }}">{{ t.name }}</span>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
+<div style="flex:none;height:20px;display:flex;align-items:center;justify-content:center;background:#fff"><div style="width:112px;height:4px;border-radius:4px;background:#d7dbe3"></div></div>
+
+</div>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:620px">
+<sc-for list="{{ jumps }}" as="j" hint-placeholder-count="8">
+<div onClick="{{ j.go }}" style="padding:7px 12px;border-radius:10px;background:#fff;border:1px solid #dfe2e9;font:600 12px 'Source Sans 3',sans-serif;color:#5c6270;cursor:pointer" style-hover="border-color:#2f5fd0;color:#2f5fd0">{{ j.name }}</div>
+</sc-for>
+</div>
+<span style="font:11px ui-monospace,monospace;color:#9aa0ae;text-align:center;max-width:520px;line-height:1.6">Jump bar is prototype scaffolding, not part of the app. Organ models are simplified stand-ins built from primitives — swap them for your Tripo or licensed GLB files when they land.</span>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:1100},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#2f5fd0&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#2f5fd0&quot;,&quot;#1f7a6b&quot;,&quot;#7a4fd0&quot;,&quot;#d0562f&quot;],&quot;section&quot;:&quot;Look&quot;},&quot;arControls&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;buttons&quot;,&quot;options&quot;:[&quot;buttons&quot;,&quot;gesture&quot;,&quot;radial&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;AR&quot;},&quot;startScreen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;onboarding&quot;,&quot;options&quot;:[&quot;onboarding&quot;,&quot;home&quot;,&quot;lessons&quot;,&quot;lesson&quot;,&quot;organ&quot;,&quot;ar-scan&quot;,&quot;ar-view&quot;,&quot;viewer&quot;,&quot;quiz&quot;,&quot;results&quot;,&quot;progress&quot;,&quot;achievements&quot;,&quot;tutor&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Prototype&quot;}}">
+class Component extends DCLogic {
+  state = { screen: null, organ: 'heart', step: 0, q: 0, answers: [], picked: null, checked: false,
+    part: 'Right atrium', labels: true, online: true, tool: 'rotate',
+    msgs: [{ bot: true, text: "Hi Ana! Ask me anything about the human body." }] };
+
+  ORGANS = [
+    { id: 'heart', name: 'Heart', system: 'Circulatory system', file: 'heart.glb', short: 'heart',
+      blurb: 'Pumps blood to every part of your body.', done: 3, total: 8,
+      statA: '100,000', statALabel: 'beats a day', statB: '4', statBLabel: 'chambers',
+      parts: [['Right atrium', 'Takes in blood coming back from the body.'], ['Right ventricle', 'Pushes that blood to the lungs to pick up oxygen.'], ['Left atrium', 'Receives fresh blood returning from the lungs.'], ['Left ventricle', 'The strongest chamber. Sends blood to the whole body.'], ['Aorta', 'The biggest artery. Carries blood away from the heart.']] },
+    { id: 'lungs', name: 'Lungs', system: 'Respiratory system', file: 'lungs.glb', short: 'lungs',
+      blurb: 'Take in oxygen and let out carbon dioxide.', done: 1, total: 6,
+      statA: '20,000', statALabel: 'breaths a day', statB: '2', statBLabel: 'lungs',
+      parts: [['Trachea', 'The windpipe. Carries air down from your throat.'], ['Bronchi', 'Two tubes that split air into each lung.'], ['Alveoli', 'Tiny air sacs where oxygen enters the blood.'], ['Diaphragm', 'The muscle under the lungs that pulls air in.']] },
+    { id: 'digestive', name: 'Digestive', system: 'Digestive system', file: 'digestive-system.glb', short: 'stomach',
+      blurb: 'Breaks food down so your body can use it.', done: 0, total: 7,
+      statA: '7 m', statALabel: 'of intestine', statB: '~24 h', statBLabel: 'to digest',
+      parts: [['Oesophagus', 'A tube that squeezes food down to the stomach.'], ['Stomach', 'Mixes food with juices that break it apart.'], ['Small intestine', 'Takes goodness from food into the blood.'], ['Large intestine', 'Takes back water and forms waste.'], ['Liver', 'Makes bile and cleans the blood.']] },
+    { id: 'brain', name: 'Brain', system: 'Nervous system', file: 'brain.glb', short: 'brain',
+      blurb: 'Controls your body and stores what you learn.', done: 0, total: 5,
+      statA: '86 bn', statALabel: 'neurons', statB: '20%', statBLabel: 'of your energy',
+      parts: [['Cerebrum', 'Thinking, talking and remembering happen here.'], ['Cerebellum', 'Keeps you balanced and your movements smooth.'], ['Brain stem', 'Controls breathing and heartbeat without you thinking.'], ['Spinal cord', 'Carries messages between brain and body.']] },
+    { id: 'kidneys', name: 'Kidneys', system: 'Urinary system', file: 'kidneys.glb', short: 'kidneys',
+      blurb: 'Clean your blood and make urine.', done: 0, total: 4,
+      statA: '180 L', statALabel: 'filtered daily', statB: '2', statBLabel: 'kidneys',
+      parts: [['Left kidney', 'Filters waste and extra water out of blood.'], ['Right kidney', 'Sits slightly lower, under the liver.'], ['Ureter', 'A tube carrying urine down to the bladder.'], ['Bladder', 'Stores urine until you go to the toilet.']] },
+    { id: 'skeleton', name: 'Skeleton', system: 'Skeletal system', file: 'skeleton.glb', short: 'skeleton',
+      blurb: 'Holds you up and protects your organs.', done: 0, total: 6,
+      statA: '206', statALabel: 'bones', statB: '~30%', statBLabel: 'of body weight',
+      parts: [['Skull', 'A bony helmet around the brain.'], ['Ribs', 'A cage protecting the heart and lungs.'], ['Spine', 'Stacked bones that let you bend and stand.'], ['Pelvis', 'Joins your legs to your spine.'], ['Femur', 'The thigh bone. The longest bone you have.']] }
+  ];
+
+  SECTIONS = [
+    { title: 'Two pumps in one', body: 'The heart is really two pumps side by side. The right side sends blood to the lungs. The left side sends it everywhere else.', kw: 'Chamber', def: 'One of the four spaces inside the heart that fills with blood and squeezes it out.', fig: 'heart.glb render\nfront view, labelled' },
+    { title: 'Where the blood goes', body: 'Blood leaves the heart through arteries and comes back through veins. One full trip around your body takes about a minute.', kw: 'Artery', def: 'A tube that carries blood away from the heart.', fig: 'circulation diagram\nsupplied asset' },
+    { title: 'Valves and beats', body: 'Valves are small flaps that stop blood flowing backwards. The thump you hear through a stethoscope is valves snapping shut.', kw: 'Valve', def: 'A flap that lets blood through one way only.', fig: 'valve close-up\nsupplied asset' },
+    { title: 'Looking after your heart', body: 'Running, cycling and swimming make the heart stronger, because it is a muscle. Sleep and water help too.', kw: 'Pulse', def: 'The beat you can feel in your wrist each time the heart squeezes.', fig: 'activity illustration\nsupplied asset' }
+  ];
+
+  QUESTIONS = [
+    { q: 'Which side of the heart pumps blood to the lungs?', opts: ['Left side', 'Right side', 'Both sides', 'Neither side'], a: 1, why: 'The right side sends blood to the lungs to collect oxygen. The left side sends it to the rest of the body.' },
+    { q: 'What carries blood away from the heart?', opts: ['Veins', 'Nerves', 'Arteries', 'Bones'], a: 2, why: 'Arteries carry blood away. Veins bring it back.' },
+    { q: 'How many chambers does a heart have?', opts: ['Two', 'Three', 'Four', 'Six'], a: 2, why: 'Two atria on top, two ventricles below.' },
+    { q: 'What do heart valves do?', opts: ['Stop blood flowing backwards', 'Warm the blood up', 'Store air', 'Clean the blood'], a: 0, why: 'They are one-way flaps, which is why a heartbeat has two sounds.' },
+    { q: 'Roughly how many times a minute does a child\u2019s heart beat at rest?', opts: ['About 10', 'About 40', 'About 90', 'About 300'], a: 2, why: 'Around 80 to 100 at rest. It slows down as you grow older.' }
+  ];
+
+  TUTOR = {
+    'What does the heart do?': 'It squeezes about once a second and pushes blood all around you. The blood carries oxygen and food to every cell.',
+    'Why do we need lungs?': 'Lungs swap gases. They take oxygen out of the air you breathe in and let out carbon dioxide your body is finished with.',
+    'What happens to food after we eat?': 'It goes down the oesophagus to the stomach, gets mixed with juices, then the small intestine takes the goodness into your blood.',
+    'What does our brain do?': 'It controls your body and stores what you learn. It also runs things you never think about, like breathing.',
+    'Why do we have bones?': 'Bones hold you up, let you move, and shield soft organs. Your ribs are a cage around your heart and lungs.'
+  };
+
+  EARNED = [
+    { name: 'First lesson', icon: 'auto_stories' }, { name: 'Quiz starter', icon: 'task_alt' },
+    { name: 'AR beginner', icon: 'view_in_ar' }, { name: '3-day streak', icon: 'local_fire_department' },
+    { name: 'Lung learner', icon: 'air' }, { name: 'Curious mind', icon: 'psychology' }
+  ];
+  LOCKED = [{ name: 'AR Adventurer', how: 'Place 3 different organs in AR' }, { name: 'Quiz Ace', how: 'Score 10/10 on any quiz' }, { name: 'Full Explorer', how: 'Finish all six organ systems' }];
+
+  get scr() { return this.state.screen ?? (this.props.startScreen || 'onboarding'); }
+  get org() { return this.ORGANS.find(o => o.id === this.state.organ) || this.ORGANS[0]; }
+  get arMode() { return this.props.arControls || 'buttons'; }
+  get accent() { return this.props.accent || '#2f5fd0'; }
+  go = (s, extra) => this.setState(Object.assign({ screen: s }, extra || {}));
+
+  currentPart() {
+    const p = this.org.parts.find(x => x[0] === this.state.part);
+    return p || this.org.parts[0];
+  }
+
+  renderVals() {
+    const s = this.state, scr = this.scr, o = this.org, A = this.accent;
+    const tabScreens = { home: 'home', lessons: 'lessons', progress: 'progress' };
+    const sec = this.SECTIONS[s.step] || this.SECTIONS[0];
+    const qn = this.QUESTIONS[s.q] || this.QUESTIONS[0];
+    const correct = s.picked === qn.a;
+    const tabDef = [
+      ['Home', 'home', 'home', 'home'], ['Lessons', 'lessons', 'lessons', 'menu_book'], ['AR', 'ar-scan', 'ar', 'view_in_ar'],
+      ['Quiz', 'quiz', 'quiz', 'quiz'], ['Me', 'progress', 'progress', 'person']
+    ];
+    const activeTab = scr === 'home' ? 'home' : scr === 'lessons' ? 'lessons' : scr === 'progress' ? 'progress' : '';
+
+    return {
+      isOnboarding: scr === 'onboarding', isHome: scr === 'home', isLessons: scr === 'lessons',
+      isLesson: scr === 'lesson', isOrgan: scr === 'organ', isArScan: scr === 'ar-scan',
+      isArView: scr === 'ar-view', isViewer: scr === 'viewer', isQuiz: scr === 'quiz',
+      isResults: scr === 'results', isProgress: scr === 'progress', isAchievements: scr === 'achievements',
+      isTutor: scr === 'tutor',
+      showTabs: !!tabScreens[scr],
+      netIcon: s.online ? 'wifi' : 'wifi_off',
+
+      organs: this.ORGANS.map(x => ({
+        id: x.id, name: x.name, system: x.system, file: x.file, short: x.short, blurb: x.blurb,
+        ratio: x.done + '/' + x.total, pct: Math.max(4, Math.round(x.done / x.total * 100)) + '%',
+        open: () => this.go('organ', { organ: x.id, part: x.parts[0][0] })
+      })),
+      recent: [this.ORGANS[0], this.ORGANS[1], this.ORGANS[3]].map(x => ({
+        id: x.id, name: x.name, short: x.short, open: () => this.go('organ', { organ: x.id, part: x.parts[0][0] })
+      })),
+
+      organId: o.id, organName: o.name, organLower: o.name.toLowerCase(), organFile: o.file, organBlurb: o.blurb,
+      organStatA: o.statA, organStatALabel: o.statALabel, organStatB: o.statB, organStatBLabel: o.statBLabel,
+      organParts: o.parts.map(p => ({
+        name: p[0],
+        bg: p[0] === s.part ? A : '#f1f3f7',
+        fg: p[0] === s.part ? '#ffffff' : '#3d424e',
+        select: () => this.setState({ part: p[0] })
+      })),
+
+      lessonTitle: 'How the heart works', stepLabel: 'Section ' + (s.step + 1) + ' of 4',
+      stepBars: this.SECTIONS.map((_, i) => ({ bg: i <= s.step ? A : '#e2e5ec' })),
+      sectionTitle: sec.title, sectionBody: sec.body, keyword: sec.kw, keywordDef: sec.def, lessonFigure: sec.fig,
+      nextLabel: s.step >= 3 ? 'Take the quiz' : 'Next section',
+      nextStep: () => s.step >= 3 ? this.go('quiz', { q: 0, answers: [], picked: null, checked: false }) : this.setState({ step: s.step + 1 }),
+
+      labelsOn: s.labels, labelBtn: s.labels ? 'Labels on' : 'Labels off',
+      isButtons: this.arMode === 'buttons', isRadial: this.arMode === 'radial', isGesture: this.arMode === 'gesture',
+      selectedPart: this.currentPart()[0], partBody: this.currentPart()[1],
+      arLabels: o.parts.slice(0, 3).map((p, i) => ({ name: p[0], top: [72, 168, 262][i] + 'px', left: [26, 250, 40][i] + 'px' })),
+      tools: [['Rotate', 'rotate'], ['Scale', 'scale'], ['Move', 'move']].map(t => ({
+        name: t[0], bg: s.tool === t[1] ? A : 'rgba(255,255,255,.1)', fg: '#ffffff',
+        pick: () => this.setState({ tool: t[1] })
+      })),
+      setRotate: () => this.setState({ tool: 'rotate' }),
+      setScale: () => this.setState({ tool: 'scale' }),
+      setMove: () => this.setState({ tool: 'move' }),
+      toggleLabels: () => this.setState({ labels: !s.labels }),
+      reset: () => this.setState({ tool: 'rotate', part: o.parts[0][0] }),
+      place: () => this.go('ar-view', { part: o.parts[0][0] }),
+
+      qLabel: (s.q + 1) + ' of 5', qPct: Math.round((s.q + (s.checked ? 1 : 0)) / 5 * 100) + '%',
+      question: qn.q,
+      options: qn.opts.map((t, i) => {
+        const isPick = s.picked === i, isAns = i === qn.a;
+        let bc = '#e2e5ec', bg = '#ffffff', dot = '#c3c8d4';
+        if (s.checked && isAns) { bc = '#2f8f5b'; bg = '#eef7f1'; dot = '#2f8f5b'; }
+        else if (s.checked && isPick) { bc = '#c4432e'; bg = '#fbf0ee'; dot = '#c4432e'; }
+        else if (isPick) { bc = A; bg = '#e7edfd'; dot = A; }
+        return { text: t, bc: bc, bg: bg, dot: dot, pick: () => { if (!s.checked) this.setState({ picked: i }); } };
+      }),
+      checked: s.checked, verdict: correct ? 'CORRECT' : 'NOT QUITE',
+      verdictColor: correct ? '#2f8f5b' : '#c4432e', explain: qn.why,
+      quizBtnLabel: s.checked ? (s.q >= 4 ? 'See results' : 'Next question') : 'Check answer',
+      quizBtnBg: s.picked === null ? '#c3c8d4' : (this.props.accent || '#2f5fd0'),
+      quizAction: () => {
+        if (s.picked === null) return;
+        if (!s.checked) return this.setState({ checked: true, answers: s.answers.concat([s.picked]) });
+        if (s.q >= 4) return this.go('results');
+        this.setState({ q: s.q + 1, picked: null, checked: false });
+      },
+      score: s.answers.filter((a, i) => a === this.QUESTIONS[i].a).length + ' / 5',
+      scoreNote: s.answers.filter((a, i) => a === this.QUESTIONS[i].a).length >= 4 ? 'Strong work on the heart.' : 'Worth another look at sections 2 and 3.',
+      review: this.QUESTIONS.map((q, i) => {
+        const given = s.answers[i];
+        const ok = given === q.a;
+        return { mark: given === undefined ? '–' : ok ? '✓' : '✕', color: given === undefined ? '#a7adbb' : ok ? '#2f8f5b' : '#c4432e', q: q.q, a: given === undefined ? 'Not answered' : 'You said: ' + q.opts[given] };
+      }),
+      retryQuiz: () => this.go('quiz', { q: 0, answers: [], picked: null, checked: false }),
+
+      earned: this.EARNED, locked: this.LOCKED,
+
+      offline: !s.online, tutorStatus: s.online ? 'connected' : 'saved answers only',
+      netToggle: s.online ? 'Go offline' : 'Go online',
+      toggleNet: () => this.setState({ online: !s.online }),
+      msgs: s.msgs.map(m => ({ bot: !!m.bot, mine: !m.bot, text: m.text })),
+      suggested: Object.keys(this.TUTOR).map(q => ({
+        q: q, ask: () => this.setState({ msgs: s.msgs.concat([{ text: q }, { bot: true, text: this.TUTOR[q] }]) })
+      })),
+      inputHint: s.online ? 'Type a question…' : 'Offline — pick a saved question',
+      inputBg: s.online ? '#ffffff' : '#f1f3f7',
+      sendBg: s.online ? A : '#c3c8d4',
+
+      tabs: tabDef.map(t => ({
+        name: t[0], icon: t[3],
+        color: activeTab === t[2] ? A : '#a7adbb',
+        fillNum: activeTab === t[2] ? 1 : 0,
+        go: () => this.go(t[1])
+      })),
+
+      allowCamera: () => this.go('home'),
+      goHome: () => this.go('home'), goLessons: () => this.go('lessons'),
+      goProgress: () => this.go('progress'), goAchievements: () => this.go('achievements'),
+      goAr: () => this.go('ar-scan'), goViewer: () => this.go('viewer'),
+      goOrgan: () => this.go('organ'), goQuiz: () => this.go('quiz', { q: 0, answers: [], picked: null, checked: false }),
+      goTutor: () => this.go('tutor'),
+      continueLesson: () => this.go('lesson', { organ: 'heart' }),
+      back: () => this.go(scr === 'lesson' || scr === 'organ' ? 'home' : scr === 'ar-view' ? 'ar-scan' : 'home'),
+
+      jumps: [['Onboarding', 'onboarding'], ['Home', 'home'], ['Lessons', 'lessons'], ['Lesson', 'lesson'],
+        ['Organ', 'organ'], ['AR scan', 'ar-scan'], ['AR view', 'ar-view'], ['3D viewer', 'viewer'],
+        ['Quiz', 'quiz'], ['Results', 'results'], ['Progress', 'progress'], ['Achievements', 'achievements'],
+        ['AI Tutor', 'tutor']].map(j => ({ name: j[0], go: () => this.go(j[1]) }))
+    };
+  }
+}
+</script>
+</body>
+</html>

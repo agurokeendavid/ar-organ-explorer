@@ -1,0 +1,439 @@
+{
+  "$note": "Seed content for Body Explorer AR. Anatomical copy is pending academic validation — use verbatim, do not reword. part.node is the expected node name inside the organ GLB that a label attaches to.",
+  "organs": [
+    {
+      "id": "heart",
+      "name": "Heart",
+      "system": "Circulatory system",
+      "model": "heart.glb",
+      "lessonTitle": "How the heart works",
+      "blurb": "Pumps blood to every part of your body.",
+      "totalLessons": 8,
+      "stats": [
+        {
+          "value": "100,000",
+          "label": "beats a day"
+        },
+        {
+          "value": "4",
+          "label": "chambers"
+        }
+      ],
+      "parts": [
+        {
+          "name": "Right atrium",
+          "description": "Takes in blood coming back from the body.",
+          "node": "right_atrium"
+        },
+        {
+          "name": "Right ventricle",
+          "description": "Pushes that blood to the lungs to pick up oxygen.",
+          "node": "right_ventricle"
+        },
+        {
+          "name": "Left atrium",
+          "description": "Receives fresh blood returning from the lungs.",
+          "node": "left_atrium"
+        },
+        {
+          "name": "Left ventricle",
+          "description": "The strongest chamber. Sends blood to the whole body.",
+          "node": "left_ventricle"
+        },
+        {
+          "name": "Aorta",
+          "description": "The biggest artery. Carries blood away from the heart.",
+          "node": "aorta"
+        }
+      ]
+    },
+    {
+      "id": "lungs",
+      "name": "Lungs",
+      "system": "Respiratory system",
+      "model": "lungs.glb",
+      "lessonTitle": "How we breathe",
+      "blurb": "Take in oxygen and let out carbon dioxide.",
+      "totalLessons": 6,
+      "stats": [
+        {
+          "value": "20,000",
+          "label": "breaths a day"
+        },
+        {
+          "value": "2",
+          "label": "lungs"
+        }
+      ],
+      "parts": [
+        {
+          "name": "Trachea",
+          "description": "The windpipe. Carries air down from your throat.",
+          "node": "trachea"
+        },
+        {
+          "name": "Bronchi",
+          "description": "Two tubes that split air into each lung.",
+          "node": "bronchi"
+        },
+        {
+          "name": "Alveoli",
+          "description": "Tiny air sacs where oxygen enters the blood.",
+          "node": "alveoli"
+        },
+        {
+          "name": "Diaphragm",
+          "description": "The muscle under the lungs that pulls air in.",
+          "node": "diaphragm"
+        }
+      ]
+    },
+    {
+      "id": "digestive",
+      "name": "Digestive",
+      "system": "Digestive system",
+      "model": "digestive-system.glb",
+      "lessonTitle": "Where food goes",
+      "blurb": "Breaks food down so your body can use it.",
+      "totalLessons": 7,
+      "stats": [
+        {
+          "value": "7 m",
+          "label": "of intestine"
+        },
+        {
+          "value": "~24 h",
+          "label": "to digest"
+        }
+      ],
+      "parts": [
+        {
+          "name": "Oesophagus",
+          "description": "A tube that squeezes food down to the stomach.",
+          "node": "oesophagus"
+        },
+        {
+          "name": "Stomach",
+          "description": "Mixes food with juices that break it apart.",
+          "node": "stomach"
+        },
+        {
+          "name": "Small intestine",
+          "description": "Takes goodness from food into the blood.",
+          "node": "small_intestine"
+        },
+        {
+          "name": "Large intestine",
+          "description": "Takes back water and forms waste.",
+          "node": "large_intestine"
+        },
+        {
+          "name": "Liver",
+          "description": "Makes bile and cleans the blood.",
+          "node": "liver"
+        }
+      ]
+    },
+    {
+      "id": "brain",
+      "name": "Brain",
+      "system": "Nervous system",
+      "model": "brain.glb",
+      "lessonTitle": "Your control centre",
+      "blurb": "Controls your body and stores what you learn.",
+      "totalLessons": 5,
+      "stats": [
+        {
+          "value": "86 bn",
+          "label": "neurons"
+        },
+        {
+          "value": "20%",
+          "label": "of your energy"
+        }
+      ],
+      "parts": [
+        {
+          "name": "Cerebrum",
+          "description": "Thinking, talking and remembering happen here.",
+          "node": "cerebrum"
+        },
+        {
+          "name": "Cerebellum",
+          "description": "Keeps you balanced and your movements smooth.",
+          "node": "cerebellum"
+        },
+        {
+          "name": "Brain stem",
+          "description": "Controls breathing and heartbeat without you thinking.",
+          "node": "brain_stem"
+        },
+        {
+          "name": "Spinal cord",
+          "description": "Carries messages between brain and body.",
+          "node": "spinal_cord"
+        }
+      ]
+    },
+    {
+      "id": "kidneys",
+      "name": "Kidneys",
+      "system": "Urinary system",
+      "model": "kidneys.glb",
+      "lessonTitle": "Cleaning the blood",
+      "blurb": "Clean your blood and make urine.",
+      "totalLessons": 4,
+      "stats": [
+        {
+          "value": "180 L",
+          "label": "filtered daily"
+        },
+        {
+          "value": "2",
+          "label": "kidneys"
+        }
+      ],
+      "parts": [
+        {
+          "name": "Left kidney",
+          "description": "Filters waste and extra water out of blood.",
+          "node": "left_kidney"
+        },
+        {
+          "name": "Right kidney",
+          "description": "Sits slightly lower, under the liver.",
+          "node": "right_kidney"
+        },
+        {
+          "name": "Ureter",
+          "description": "A tube carrying urine down to the bladder.",
+          "node": "ureter"
+        },
+        {
+          "name": "Bladder",
+          "description": "Stores urine until you go to the toilet.",
+          "node": "bladder"
+        }
+      ]
+    },
+    {
+      "id": "skeleton",
+      "name": "Skeleton",
+      "system": "Skeletal system",
+      "model": "skeleton.glb",
+      "lessonTitle": "Bones and joints",
+      "blurb": "Holds you up and protects your organs.",
+      "totalLessons": 6,
+      "stats": [
+        {
+          "value": "206",
+          "label": "bones"
+        },
+        {
+          "value": "~30%",
+          "label": "of body weight"
+        }
+      ],
+      "parts": [
+        {
+          "name": "Skull",
+          "description": "A bony helmet around the brain.",
+          "node": "skull"
+        },
+        {
+          "name": "Ribs",
+          "description": "A cage protecting the heart and lungs.",
+          "node": "ribs"
+        },
+        {
+          "name": "Spine",
+          "description": "Stacked bones that let you bend and stand.",
+          "node": "spine"
+        },
+        {
+          "name": "Pelvis",
+          "description": "Joins your legs to your spine.",
+          "node": "pelvis"
+        },
+        {
+          "name": "Femur",
+          "description": "The thigh bone. The longest bone you have.",
+          "node": "femur"
+        }
+      ]
+    }
+  ],
+  "sections": {
+    "heart": [
+      {
+        "title": "Two pumps in one",
+        "body": "The heart is really two pumps side by side. The right side sends blood to the lungs. The left side sends it everywhere else.",
+        "keyword": "Chamber",
+        "definition": "One of the four spaces inside the heart that fills with blood and squeezes it out.",
+        "figure": "heart.glb render, front view, labelled"
+      },
+      {
+        "title": "Where the blood goes",
+        "body": "Blood leaves the heart through arteries and comes back through veins. One full trip around your body takes about a minute.",
+        "keyword": "Artery",
+        "definition": "A tube that carries blood away from the heart.",
+        "figure": "circulation diagram (supplied asset)"
+      },
+      {
+        "title": "Valves and beats",
+        "body": "Valves are small flaps that stop blood flowing backwards. The thump you hear through a stethoscope is valves snapping shut.",
+        "keyword": "Valve",
+        "definition": "A flap that lets blood through one way only.",
+        "figure": "valve close-up (supplied asset)"
+      },
+      {
+        "title": "Looking after your heart",
+        "body": "Running, cycling and swimming make the heart stronger, because it is a muscle. Sleep and water help too.",
+        "keyword": "Pulse",
+        "definition": "The beat you can feel in your wrist each time the heart squeezes.",
+        "figure": "activity illustration (supplied asset)"
+      }
+    ]
+  },
+  "quiz": {
+    "heart": [
+      {
+        "q": "Which side of the heart pumps blood to the lungs?",
+        "options": [
+          "Left side",
+          "Right side",
+          "Both sides",
+          "Neither side"
+        ],
+        "answer": 1,
+        "why": "The right side sends blood to the lungs to collect oxygen. The left side sends it to the rest of the body."
+      },
+      {
+        "q": "What carries blood away from the heart?",
+        "options": [
+          "Veins",
+          "Nerves",
+          "Arteries",
+          "Bones"
+        ],
+        "answer": 2,
+        "why": "Arteries carry blood away. Veins bring it back."
+      },
+      {
+        "q": "How many chambers does a heart have?",
+        "options": [
+          "Two",
+          "Three",
+          "Four",
+          "Six"
+        ],
+        "answer": 2,
+        "why": "Two atria on top, two ventricles below."
+      },
+      {
+        "q": "What do heart valves do?",
+        "options": [
+          "Stop blood flowing backwards",
+          "Warm the blood up",
+          "Store air",
+          "Clean the blood"
+        ],
+        "answer": 0,
+        "why": "They are one-way flaps, which is why a heartbeat has two sounds."
+      },
+      {
+        "q": "Roughly how many times a minute does a child’s heart beat at rest?",
+        "options": [
+          "About 10",
+          "About 40",
+          "About 90",
+          "About 300"
+        ],
+        "answer": 2,
+        "why": "Around 80 to 100 at rest. It slows down as you grow older."
+      }
+    ]
+  },
+  "tutor": [
+    {
+      "q": "What does the heart do?",
+      "a": "It squeezes about once a second and pushes blood all around you. The blood carries oxygen and food to every cell."
+    },
+    {
+      "q": "Why do we need lungs?",
+      "a": "Lungs swap gases. They take oxygen out of the air you breathe in and let out carbon dioxide your body is finished with."
+    },
+    {
+      "q": "What happens to food after we eat?",
+      "a": "It goes down the oesophagus to the stomach, gets mixed with juices, then the small intestine takes the goodness into your blood."
+    },
+    {
+      "q": "What does our brain do?",
+      "a": "It controls your body and stores what you learn. It also runs things you never think about, like breathing."
+    },
+    {
+      "q": "Why do we have bones?",
+      "a": "Bones hold you up, let you move, and shield soft organs. Your ribs are a cage around your heart and lungs."
+    }
+  ],
+  "badges": {
+    "earned": [
+      {
+        "key": "first_lesson",
+        "name": "First lesson",
+        "icon": "auto_stories"
+      },
+      {
+        "key": "quiz_starter",
+        "name": "Quiz starter",
+        "icon": "task_alt"
+      },
+      {
+        "key": "ar_beginner",
+        "name": "AR beginner",
+        "icon": "view_in_ar"
+      },
+      {
+        "key": "streak_3",
+        "name": "3-day streak",
+        "icon": "local_fire_department"
+      },
+      {
+        "key": "lung_learner",
+        "name": "Lung learner",
+        "icon": "air"
+      },
+      {
+        "key": "curious_mind",
+        "name": "Curious mind",
+        "icon": "psychology"
+      }
+    ],
+    "locked": [
+      {
+        "key": "ar_adventurer",
+        "name": "AR Adventurer",
+        "how": "Place 3 different organs in AR"
+      },
+      {
+        "key": "quiz_ace",
+        "name": "Quiz Ace",
+        "how": "Score 10/10 on any quiz"
+      },
+      {
+        "key": "full_explorer",
+        "name": "Full Explorer",
+        "how": "Finish all six organ systems"
+      }
+    ]
+  },
+  "demoProgress": {
+    "$note": "Illustrative only — ship the app empty. Useful as a dev seed for demos.",
+    "heart": 3,
+    "lungs": 1,
+    "digestive": 0,
+    "brain": 0,
+    "kidneys": 0,
+    "skeleton": 0
+  }
+}
