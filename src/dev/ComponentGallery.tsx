@@ -12,6 +12,7 @@ import { SectionHeader } from '../components/SectionHeader';
 import { Sheet } from '../components/Sheet';
 import { StatTile } from '../components/StatTile';
 import { colors, spacing, textStyles } from '../theme/tokens';
+import { DataLayerPanel } from './DataLayerPanel';
 
 function GallerySection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -128,6 +129,8 @@ export function ComponentGallery() {
             <Button label="Open dark sheet" variant="ghost" onPress={() => setDarkSheetOpen(true)} />
           </View>
         </GallerySection>
+
+        <DataLayerPanel />
       </ScrollView>
 
       <Sheet visible={lightSheetOpen} onClose={() => setLightSheetOpen(false)}>
