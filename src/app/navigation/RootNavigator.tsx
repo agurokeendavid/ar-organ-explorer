@@ -6,6 +6,7 @@ import { ARScanScreen } from '../../screens/ARScan/ARScanScreen';
 import { LessonScreen } from '../../screens/Lesson/LessonScreen';
 import { OrganDetailScreen } from '../../screens/OrganDetail/OrganDetailScreen';
 import { QuizScreen } from '../../screens/Quiz/QuizScreen';
+import { ResultsScreen } from '../../screens/Results/ResultsScreen';
 import { TutorScreen } from '../../screens/Tutor/TutorScreen';
 import { ViewerScreen } from '../../screens/Viewer/ViewerScreen';
 
@@ -20,6 +21,7 @@ export function RootNavigator() {
       <Stack.Screen name="ARScan" component={ARScanScreen} />
       <Stack.Screen name="Viewer" component={ViewerScreen} />
       <Stack.Screen name="Quiz" component={QuizScreen} />
+      <Stack.Screen name="Results" component={ResultsScreen} />
       <Stack.Screen name="Tutor" component={TutorScreen} />
     </Stack.Navigator>
   );

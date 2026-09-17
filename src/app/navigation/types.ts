@@ -1,15 +1,16 @@
-import type { CompositeScreenProps } from '@react-navigation/native';
+import type { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import type { OrganId } from '../../data/content';
 
 export type RootStackParamList = {
-  Tabs: undefined;
+  Tabs: NavigatorScreenParams<TabParamList> | undefined;
   Lesson: { organId: OrganId; sectionIndex?: number };
   OrganDetail: { organId: OrganId; partName?: string };
   ARScan: { organId: OrganId };
   Viewer: { organId: OrganId; partName?: string };
   Quiz: { organId: OrganId };
+  Results: { organId: OrganId; answers: (number | null)[]; newBadgeKeys: string[] };
   Tutor: undefined;
 };
 
