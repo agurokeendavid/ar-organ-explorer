@@ -8,6 +8,7 @@ export type RootStackParamList = {
   Lesson: { organId: OrganId; sectionIndex?: number };
   OrganDetail: { organId: OrganId; partName?: string };
   ARScan: { organId: OrganId };
+  Viewer: { organId: OrganId; partName?: string };
   Quiz: { organId: OrganId };
   Tutor: undefined;
 };

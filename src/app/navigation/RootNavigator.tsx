@@ -7,6 +7,7 @@ import { LessonScreen } from '../../screens/Lesson/LessonScreen';
 import { OrganDetailScreen } from '../../screens/OrganDetail/OrganDetailScreen';
 import { QuizScreen } from '../../screens/Quiz/QuizScreen';
 import { TutorScreen } from '../../screens/Tutor/TutorScreen';
+import { ViewerScreen } from '../../screens/Viewer/ViewerScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -17,6 +18,7 @@ export function RootNavigator() {
       <Stack.Screen name="Lesson" component={LessonScreen} />
       <Stack.Screen name="OrganDetail" component={OrganDetailScreen} />
       <Stack.Screen name="ARScan" component={ARScanScreen} />
+      <Stack.Screen name="Viewer" component={ViewerScreen} />
       <Stack.Screen name="Quiz" component={QuizScreen} />
       <Stack.Screen name="Tutor" component={TutorScreen} />
     </Stack.Navigator>

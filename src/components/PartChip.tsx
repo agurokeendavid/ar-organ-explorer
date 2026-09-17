@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable, StyleSheet, Text } from 'react-native';
+import { Pressable, StyleProp, StyleSheet, Text, ViewStyle } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { colors, radius, spacing, textStyles } from '../theme/tokens';
 import { usePressScale } from './usePressScale';
@@ -8,9 +8,10 @@ export type PartChipProps = {
   label: string;
   selected?: boolean;
   onPress?: () => void;
+  style?: StyleProp<ViewStyle>;
 };
 
-export function PartChip({ label, selected = false, onPress }: PartChipProps) {
+export function PartChip({ label, selected = false, onPress, style }: PartChipProps) {
   const { style: pressStyle, onPressIn, onPressOut } = usePressScale();
 
   return (
@@ -20,7 +21,7 @@ export function PartChip({ label, selected = false, onPress }: PartChipProps) {
         onPressIn={onPressIn}
         onPressOut={onPressOut}
         android_ripple={undefined}
-        style={[styles.base, selected && styles.selected]}
+        style={[styles.base, selected && styles.selected, style]}
       >
         <Text style={[textStyles.chip, selected ? styles.labelSelected : styles.label]}>
           {label}
