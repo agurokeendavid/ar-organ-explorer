@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { ComponentGallery } from '../../dev/ComponentGallery';
+import { colors, spacing, textStyles } from '../../theme/tokens';
 
 export type TabParamList = {
   HomeTab: undefined;
@@ -15,8 +17,8 @@ const Tab = createBottomTabNavigator<TabParamList>();
 function PlaceholderScreen({ label }: { label: string }) {
   return (
     <View style={styles.screen}>
-      <Text style={styles.heading}>{label}</Text>
-      <Text style={styles.body}>Body Sans 3 — M0 placeholder, milestone content lands in M3+.</Text>
+      <Text style={[textStyles.h1, styles.heading]}>{label}</Text>
+      <Text style={[textStyles.body, styles.body]}>Placeholder — milestone content lands in M3+.</Text>
     </View>
   );
 }
@@ -24,7 +26,7 @@ function PlaceholderScreen({ label }: { label: string }) {
 export function TabNavigator() {
   return (
     <Tab.Navigator screenOptions={{ headerShown: false }}>
-      <Tab.Screen name="HomeTab">{() => <PlaceholderScreen label="Home" />}</Tab.Screen>
+      <Tab.Screen name="HomeTab" component={ComponentGallery} />
       <Tab.Screen name="LessonsTab">{() => <PlaceholderScreen label="Lessons" />}</Tab.Screen>
       <Tab.Screen name="ARTab">{() => <PlaceholderScreen label="AR" />}</Tab.Screen>
       <Tab.Screen name="QuizTab">{() => <PlaceholderScreen label="Quiz" />}</Tab.Screen>
@@ -38,18 +40,15 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 8,
-    paddingHorizontal: 24,
+    gap: spacing[8],
+    paddingHorizontal: spacing[24],
+    backgroundColor: colors.bg.app,
   },
   heading: {
-    fontFamily: 'BricolageGrotesque-ExtraBold',
-    fontSize: 26,
-    color: '#23262e',
+    color: colors.text.primary,
   },
   body: {
-    fontFamily: 'SourceSans3-Regular',
-    fontSize: 16,
-    color: '#3d424e',
+    color: colors.text.body,
     textAlign: 'center',
   },
 });
