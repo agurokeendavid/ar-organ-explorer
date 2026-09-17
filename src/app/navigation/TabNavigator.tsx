@@ -1,54 +1,100 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { ComponentGallery } from '../../dev/ComponentGallery';
-import { colors, spacing, textStyles } from '../../theme/tokens';
-
-export type TabParamList = {
-  HomeTab: undefined;
-  LessonsTab: undefined;
-  ARTab: undefined;
-  QuizTab: undefined;
-  MeTab: undefined;
-};
+import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Icon } from '../../components/Icon';
+import { HomeScreen } from '../../screens/Home/HomeScreen';
+import { LessonsScreen } from '../../screens/Lessons/LessonsScreen';
+import { ProgressScreen } from '../../screens/Progress/ProgressScreen';
+import { colors, textStyles } from '../../theme/tokens';
+import { useActiveOrgan } from '../providers/ActiveOrganProvider';
+import { RootStackParamList, TabParamList } from './types';
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
-function PlaceholderScreen({ label }: { label: string }) {
-  return (
-    <View style={styles.screen}>
-      <Text style={[textStyles.h1, styles.heading]}>{label}</Text>
-      <Text style={[textStyles.body, styles.body]}>Placeholder — milestone content lands in M3+.</Text>
-    </View>
-  );
+function NoScreen() {
+  return null;
+}
+
+function renderHomeIcon({ color }: { color: string }) {
+  return <Icon name="home" size={24} color={color} />;
+}
+
+function renderLessonsIcon({ color }: { color: string }) {
+  return <Icon name="menu-book" size={24} color={color} />;
+}
+
+function renderArIcon({ color }: { color: string }) {
+  return <Icon name="view-in-ar" size={24} color={color} />;
+}
+
+function renderQuizIcon({ color }: { color: string }) {
+  return <Icon name="quiz" size={24} color={color} />;
+}
+
+function renderMeIcon({ color }: { color: string }) {
+  return <Icon name="person" size={24} color={color} />;
 }
 
 export function TabNavigator() {
+  const insets = useSafeAreaInsets();
+  const { activeOrganId } = useActiveOrgan();
+  const rootNavigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }}>
-      <Tab.Screen name="HomeTab" component={ComponentGallery} />
-      <Tab.Screen name="LessonsTab">{() => <PlaceholderScreen label="Lessons" />}</Tab.Screen>
-      <Tab.Screen name="ARTab">{() => <PlaceholderScreen label="AR" />}</Tab.Screen>
-      <Tab.Screen name="QuizTab">{() => <PlaceholderScreen label="Quiz" />}</Tab.Screen>
-      <Tab.Screen name="MeTab">{() => <PlaceholderScreen label="Progress" />}</Tab.Screen>
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: colors.primary.default,
+        tabBarInactiveTintColor: colors.text.faint,
+        tabBarLabelStyle: textStyles.tab,
+        tabBarStyle: {
+          height: 62 + insets.bottom,
+          paddingBottom: insets.bottom,
+          backgroundColor: colors.surface.default,
+          borderTopWidth: 1,
+          borderTopColor: colors.border,
+        },
+      }}
+    >
+      <Tab.Screen
+        name="HomeTab"
+        component={HomeScreen}
+        options={{ tabBarLabel: 'Home', tabBarIcon: renderHomeIcon }}
+      />
+      <Tab.Screen
+        name="LessonsTab"
+        component={LessonsScreen}
+        options={{ tabBarLabel: 'Lessons', tabBarIcon: renderLessonsIcon }}
+      />
+      <Tab.Screen
+        name="ARTab"
+        component={NoScreen}
+        options={{ tabBarLabel: 'AR', tabBarIcon: renderArIcon }}
+        listeners={{
+          tabPress: e => {
+            e.preventDefault();
+            rootNavigation.navigate('ARScan', { organId: activeOrganId });
+          },
+        }}
+      />
+      <Tab.Screen
+        name="QuizTab"
+        component={NoScreen}
+        options={{ tabBarLabel: 'Quiz', tabBarIcon: renderQuizIcon }}
+        listeners={{
+          tabPress: e => {
+            e.preventDefault();
+            rootNavigation.navigate('Quiz', { organId: activeOrganId });
+          },
+        }}
+      />
+      <Tab.Screen
+        name="MeTab"
+        component={ProgressScreen}
+        options={{ tabBarLabel: 'Me', tabBarIcon: renderMeIcon }}
+      />
     </Tab.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: spacing[8],
-    paddingHorizontal: spacing[24],
-    backgroundColor: colors.bg.app,
-  },
-  heading: {
-    color: colors.text.primary,
-  },
-  body: {
-    color: colors.text.body,
-    textAlign: 'center',
-  },
-});
