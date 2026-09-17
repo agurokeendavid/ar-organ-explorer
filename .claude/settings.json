@@ -1,0 +1,56 @@
+{
+  "enabledPlugins": {
+    "code-simplifier@claude-plugins-official": true,
+    "expo@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true
+  },
+  "permissions": {
+    "deny": [
+      "Read(.env)",
+      "Read(.env.*)",
+      "Edit(.env)",
+      "Edit(.env.*)",
+      "Read(**/*.jks)",
+      "Edit(**/*.jks)",
+      "Read(**/keystore.properties)",
+      "Edit(**/keystore.properties)",
+      "Read(**/key.properties)",
+      "Edit(**/key.properties)",
+      "Read(**/*.p12)",
+      "Edit(**/*.p12)",
+      "Read(**/*.pem)",
+      "Edit(**/*.pem)",
+      "Read(**/*.key)",
+      "Edit(**/*.key)",
+      "Read(**/*.p8)",
+      "Edit(**/*.p8)",
+      "Read(**/*.mobileprovision)",
+      "Edit(**/*.mobileprovision)",
+      "Read(**/google-services.json)",
+      "Edit(**/google-services.json)",
+      "Read(**/GoogleService-Info.plist)",
+      "Edit(**/GoogleService-Info.plist)",
+      "Read(**/credentials.json)",
+      "Edit(**/credentials.json)",
+      "Read(**/*.credentials.json)",
+      "Edit(**/*.credentials.json)",
+      "Read(.claude/settings.local.json)",
+      "Edit(.claude/settings.local.json)",
+      "Bash(cat .env*)",
+      "Bash(cat *keystore.properties*)",
+      "Bash(cat *key.properties*)",
+      "Bash(cat *credentials.json*)",
+      "Bash(rm .env*)",
+      "Bash(rm *.jks*)",
+      "Bash(rm *keystore.properties*)",
+      "Bash(rm *key.properties*)",
+      "Bash(rm *credentials.json*)",
+      "Bash(rm google-services.json*)",
+      "Bash(rm GoogleService-Info.plist*)"
+    ],
+    "allow": [
+      "Read(android/app/debug.keystore)",
+      "Edit(android/app/debug.keystore)"
+    ]
+  }
+}

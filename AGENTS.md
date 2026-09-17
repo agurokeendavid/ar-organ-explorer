@@ -26,6 +26,29 @@ An offline-first React Native (TypeScript) Android app that teaches six human or
 7. **Anatomical copy is content, not code.** Never invent or reword anatomical descriptions — use
    `data/content.json` verbatim. It is pending academic validation and must be traceable.
 
+## Security & secrets guardrails
+
+1. **No secrets in the repo, ever.** No API keys, tokens, passwords, signing credentials, or
+   `.env` values committed as literals or in config files — not even "temporary" ones. If a
+   feature needs a secret, read it from an untracked `.env`/`local.properties`/gradle property and
+   document the variable name in `docs/decisions.md`, not the value.
+2. **Release signing stays local.** The release keystore, its passwords, and any
+   `keystore.properties` are never committed. Only the shared `android/app/debug.keystore` is
+   tracked (it is intentionally exempted in `.gitignore`).
+3. **No backend means no service credentials.** Per the "No backend in v1" rule above, there
+   should be no database URLs, cloud API keys, or auth tokens in this codebase at all. Treat any
+   appearance of one as a sign the change is out of scope, not something to gitignore and move on.
+4. **Child-privacy default: no telemetry by default.** This app teaches 9–12 year olds. Do not add
+   analytics, crash reporting, or ad SDKs, and do not collect device identifiers, location, or any
+   personally identifiable information, unless a task explicitly asks for it and states the
+   consent/compliance handling. Offline-first already limits exposure — do not undo that by adding
+   a network SDK "just for metrics."
+5. **`data/content.json` is trusted content, not a secrets boundary.** It's fine to read and ship
+   verbatim; the concern here is unrelated to secrets — see the "verbatim" rule above.
+6. **If you find a secret already committed** (in history or in the working tree), stop and flag
+   it to the user instead of deleting/rewriting history yourself — that needs a deliberate
+   rotation + history-scrub decision, not a quiet fix.
+
 ## Recommended library set
 
 | Concern | Library |

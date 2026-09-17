@@ -1,6 +1,66 @@
-node_modules/
+# OSX
+.DS_Store
+
+# Android/IntelliJ
+android/build/
 android/app/build/
 android/.gradle/
-*.keystore
+.idea
+.gradle
+local.properties
+*.iml
+*.hprof
+.cxx/
+.kotlin/
+
+# node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Bundle artifact
+*.jsbundle
+
+# Temporary files created by Metro to check the health of the file watcher
+.metro-health-check*
+
+# testing
+/coverage
+
+# --- Secrets & credentials: never commit these ---
+# env files (keep committed only if explicitly named *.example)
 .env
-.DS_Store
+.env.*
+!.env.example
+
+# Android release signing
+*.keystore
+*.jks
+!android/app/debug.keystore
+keystore.properties
+android/keystore.properties
+android/key.properties
+
+# generic key/cert material
+*.p12
+*.pem
+*.key
+*.p8
+*.mobileprovision
+
+# service/backend config that would carry credentials if ever added
+google-services.json
+GoogleService-Info.plist
+credentials.json
+*.credentials.json
+
+# EAS / Expo local auth state, if ever used
+.expo/
+.eas/
+
+# Claude Code local overrides (may contain machine-specific permissions/paths)
+.claude/settings.local.json
+
+# OS junk (Windows)
+Thumbs.db
+desktop.ini
